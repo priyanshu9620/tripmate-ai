@@ -160,6 +160,20 @@ class Nodes:
             msg = "I could not find flights or hotels for this trip. Try different dates or destination."
             return {"messages": [AIMessage(content=msg)], "phase": "collect", "usage": usage}
         total = out["price_per_person_inr"] * n + ret["price_per_person_inr"] * n + hotel["total_inr"]
+        if total > c.budget_inr:
+            # budget guard: the model proposed over budget — if a within-budget combination exists, take the
+            # cheapest flights + best-rated hotel that fits and say so; otherwise keep the pick, flagged
+            cheap_out = _cheapest(flights_seen, c.origin, c.destination) or out
+            cheap_ret = _cheapest(flights_seen, c.destination, c.origin) or ret
+            flights_total = (cheap_out["price_per_person_inr"] + cheap_ret["price_per_person_inr"]) * n
+            fitting = [h for h in hotels_seen.values() if flights_total + h["total_inr"] <= c.budget_inr]
+            if fitting:
+                out, ret = cheap_out, cheap_ret
+                hotel = max(fitting, key=lambda h: (h["rating"], -h["total_inr"]))
+                total = flights_total + hotel["total_inr"]
+                pick["reasoning"] = (
+                    pick.get("reasoning") or ""
+                ) + " [budget guard: model's pick was over budget; substituted]"
         proposal = {
             "outbound": out,
             "return": ret,

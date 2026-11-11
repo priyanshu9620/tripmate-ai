@@ -104,3 +104,47 @@ def test_budgeter_respects_seats_and_rooms_for_a_group_of_six():
     )
     out = g.invoke(Command(resume={"decision": "approve"}), cfg)
     assert out["phase"] == "done" and all(b["ok"] for b in out["bookings"])
+
+
+def test_budget_guard_replaces_an_over_budget_model_pick():
+    """Model picks over budget while a fitting combination exists → code substitutes it."""
+    from tripmate.agents.nodes import Nodes
+    from tripmate.agents.state import Constraints
+    from tripmate.providers import flights, hotels
+
+    c = Constraints(
+        origin="Mumbai",
+        destination="Jaipur",
+        start_date="2027-01-10",
+        days=3,
+        travellers=["A", "B"],
+        budget_inr=45000,
+    )
+    fl_out = flights.search_flights("Mumbai", "Jaipur", c.start, 2)
+    fl_ret = flights.search_flights("Jaipur", "Mumbai", c.end, 2)
+    hs = hotels.search_hotels("Jaipur", c.start, c.end, 2)
+    premium = max(hs, key=lambda h: h["total_inr"])
+
+    class PickPremium(ScriptedTripModel):
+        def _budgeter(self, system, messages):
+            from langchain_core.messages import AIMessage, ToolMessage
+
+            if not any(isinstance(m, ToolMessage) for m in messages):
+                return super()._budgeter(system, messages)
+            import json
+
+            return AIMessage(
+                content=json.dumps(
+                    {
+                        "outbound_flight_id": fl_out[-1]["flight_id"],
+                        "return_flight_id": fl_ret[-1]["flight_id"],
+                        "hotel_id": premium["hotel_id"],
+                        "reasoning": "fancy",
+                    }
+                )
+            )
+
+    out = Nodes(PickPremium()).budgeter({"constraints": c.model_dump(), "messages": []})
+    p = out["proposal"]
+    assert p["within_budget"] is True and "budget guard" in p["reasoning"]
+    assert p["hotel"]["hotel_id"] != premium["hotel_id"]
