@@ -6,6 +6,8 @@ Stack: `infra/` (OpenTofu), region ap-southeast-2, 26 resources (`tofu state lis
 | what | evidence |
 |---|---|
 | CD pipeline | GitHub Actions run https://github.com/priyanshu9620/tripmate-ai/actions/runs/43032175539 — build linux/amd64 → ECR `:<sha>` + `:latest` → SSM `deploy.sh` → ALB target healthy. Build+push+deploy ≈ 2 min. |
+| CD pipeline, 2nd run (after the IAM + idle-timeout fixes) | https://github.com/priyanshu9620/tripmate-ai/actions/runs/43033540409 — build ✓, SSM deploy ✓, ALB healthy ✓, **smoke test ✓** (`deployed 7bcac25 → …/ui`) |
+| 2nd conversation with `idle_timeout = 300` | thread `1c57c0920ce4`: Mumbai→Jaipur 3 days ₹45,000, turn 36 s, 7 LLM / 7 tool calls, 7,726/918 tokens → proposal (model picked premium, over budget → led to the budget guard commit); approve → `done`, 2 trips in AWS Postgres |
 | Public URL | `http://tripmate-2106406734.ap-southeast-2.elb.amazonaws.com` (ALB → 1 × t3.micro, api + Postgres via compose) |
 | `/healthz` through the ALB | `{"version":"0.1.0","llm_provider":"google_genai","tools_mode":"live","memory":"postgres","postgres":true}` |
 | Real conversation on AWS | thread `b3bc7417e28f`: Delhi→Goa 4 days 2 people ₹60,000 → proposal; approve → `done`, references `1FBF28, 1409DA, 79BCA7`, total ₹46,870; `GET /trips` → 1 trip in the AWS Postgres |

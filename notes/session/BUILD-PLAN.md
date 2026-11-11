@@ -30,10 +30,10 @@ Order chosen so every phase is runnable, measurement comes before AWS, and the A
 - [x] LangSmith run set + screenshot if key present (D-10); local JSONL run log regardless
 - Exit: `make bench && make load` regenerate the report from scratch; numbers in README match `results.json`.
 
-## Phase 4 — AWS + CD  ◐ code on main (2026-11-11); apply handed to the user  (bullet 2; the only billable phase, kept short)
+## Phase 4 — AWS + CD  ☑ 2026-11-11 deployed + verified (destroy pending)  (bullet 2; the only billable phase, kept short)
 - [x] `infra/` Terraform: VPC/SG, 1 × EC2 (user-data installs Docker, pulls GHCR image, compose up), ALB + target group (`/healthz`), SSM role, OIDC role for Actions, outputs (ALB DNS). Every resource block commented with what/why
 - [x] `deploy.yml`: GHCR push → SSM `docker compose pull && up -d` → smoke via ALB
-- [ ] User runs `terraform apply`; Claude verifies: ALB URL serves `/ui`, a real conversation reaches the interrupt and resumes; one deploy triggered by a `main` push; screenshots into `docs/`
+- [x] User runs `terraform apply`; Claude verifies: ALB URL serves `/ui`, a real conversation reaches the interrupt and resumes; one deploy triggered by a `main` push; screenshots into `docs/`
 - [ ] User runs `terraform destroy`; verify nothing billable remains
 - Exit: a merged PR deployed itself to AWS and the evidence is in the repo; stack destroyed.
 

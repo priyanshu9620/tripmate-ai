@@ -6,8 +6,11 @@
   missing IAM action (P-15).
 - Verified through the ALB (docs/aws-evidence.md): healthz live-tools + postgres; a real Gemini conversation reached
   the proposal (61 s — cut by the ALB 60 s idle timeout, P-14), approve → booked, 1 trip in AWS Postgres, /ui 200.
-- Pending: user `git push` (secrets archive commit + these fixes), `make infra-apply` (2 changes: idle timeout, IAM),
-  then Claude re-runs the deploy and re-verifies; then `make infra-destroy`; then `make secrets-pack` (state changed).
+- User applied the 2 fixes. Re-run deploy 43033540409: **all steps green incl. smoke**. 2nd conversation through the ALB
+  with the 300 s timeout: 36 s turn, approve → booked, 2 trips in AWS Postgres. Gemini picked a premium hotel over budget
+  → budget guard added in `nodes.py` (test with a deliberately over-budget model; 25 tests).
+- Pending: user `git push` (3 local commits: secrets archive, infra fixes + evidence, budget guard → auto-deploys),
+  then `make infra-destroy`, then `make secrets-pack` + commit + push (state changed).
 
 ## 2026-11-11 — Phase 4 code ready, apply handed to the user
 - `infra/` (OpenTofu, aws 5.82.2 from the local mirror): default VPC, 2 SGs, ECR, 7 SSM params, instance role, 1 × t3.micro
