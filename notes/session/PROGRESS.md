@@ -1,5 +1,9 @@
 # Progress (newest first)
 
+## 2026-11-11 — PROJECT COMPLETE; AWS stack destroyed and verified empty
+- User ran `make infra-destroy` + `make secrets-pack`. Verified: 0 instances, 0 load balancers, 0 ECR repos, 0 SSM params,
+  tofu state empty. Nothing bills. `AWS_DEPLOY_ENABLED=false`. Total AWS uptime ≈ 1.5 h (< $0.10).
+
 ## 2026-11-11 — Phase 5 done: manual, interview prep, resume lines
 - `docs/GUIDE.md` (config, every command, API table, conversation steps, troubleshooting, AWS in one screen),
   `INTERVIEW_PREP/README + 01–06` (04 generated from PROBLEMS.md P-1…P-16), `notes/session/RESUME.md` (two lines with the

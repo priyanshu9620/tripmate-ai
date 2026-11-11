@@ -34,7 +34,7 @@ Order chosen so every phase is runnable, measurement comes before AWS, and the A
 - [x] `infra/` Terraform: VPC/SG, 1 × EC2 (user-data installs Docker, pulls GHCR image, compose up), ALB + target group (`/healthz`), SSM role, OIDC role for Actions, outputs (ALB DNS). Every resource block commented with what/why
 - [x] `deploy.yml`: GHCR push → SSM `docker compose pull && up -d` → smoke via ALB
 - [x] User runs `terraform apply`; Claude verifies: ALB URL serves `/ui`, a real conversation reaches the interrupt and resumes; one deploy triggered by a `main` push; screenshots into `docs/`
-- [◐] User runs `terraform destroy`; Claude verifies nothing billable remains (pending)
+- [x] User runs `terraform destroy`; Claude verified nothing billable remains
 - Exit: a merged PR deployed itself to AWS and the evidence is in the repo; stack destroyed.
 
 ## Phase 5 — Interview material + resume rewrite  ☑ 2026-11-11

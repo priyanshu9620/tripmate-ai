@@ -14,8 +14,7 @@ TripMate AI: Multi-Agent Trip Planner | LangGraph, FastAPI, PostgreSQL, Docker, 
 Neither line has a number. Measured numbers get added (D-9) and the lines are rewritten at the end.
 
 ## Where we are
-**2026-11-11 late night:** ALL PHASES DONE (0–5). Only open item: the user's `make infra-destroy` + `make secrets-pack` +
-push; `AWS_DEPLOY_ENABLED` is already `false`. Canonical interview KT = `INTERVIEW_PREP/` (kt/ is the older draft).
+**2026-11-11 late night:** ALL PHASES DONE (0–5). AWS destroyed and verified empty; secrets repacked. `AWS_DEPLOY_ENABLED` is `false`. Canonical interview KT = `INTERVIEW_PREP/` (kt/ is the older draft).
 Resume lines with measured numbers: `notes/session/RESUME.md`. Rotate the LangSmith key when done (it was pasted in chat).
 
 Earlier: Phases 0–4 code on `main`. Phase 4 infra is planned (22 resources, `infra/plan.out`) and
@@ -51,4 +50,4 @@ verified (1.8 s, 11 tokens). `.env` in the repo holds the Gemini key (git-ignore
    project with SCP (EC2/ELB/ECS/S3/CloudFront allowed, App Runner denied) — see shopease-notes D-21.
 
 ## Single next command
-User: `cd ~/Desktop/tripmate && make infra-destroy` then `SECRETS_PASSPHRASE=… make secrets-pack && git add secrets.tar.enc && git commit -m 'chore: secrets' && git push`. Claude: verify the account is empty.
+None required. Optional follow-ups: rotate the LangSmith key; re-run `make bench` on a second model for a comparison row; demo GIF.
