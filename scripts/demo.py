@@ -52,13 +52,12 @@ with api.stream("POST", f"/threads/{tid}/stream", json={"content": ASK}) as r:
 c.print(f"[green]tripmate>[/green] {turn['reply']}")
 p = turn["proposal"]
 bd = p["breakdown"]
-c.print(
-    f"  ₹{bd['flights_inr']:,} flights + ₹{bd['hotel_inr']:,} hotel = ₹{p['total_inr']:,} (budget ₹{p['budget_inr']:,})"
-)
+c.print(f"  ₹{bd['flights_inr']:,} flights + ₹{bd['hotel_inr']:,} hotel = ₹{p['total_inr']:,}")
+c.print(f"  budget ₹{p['budget_inr']:,} → {'within budget' if p['within_budget'] else 'OVER BUDGET'}")
 for d in turn["itinerary"]["days"]:
     c.print(f"  {d['date']} {d['title']}: {', '.join(d['activities'])}")
 u = turn["usage"]
-stats = f"{u['llm_calls']} LLM calls · {u['tool_calls']} tool calls · {u['input_tokens']}/{u['output_tokens']} tokens"
+stats = f"{u['llm_calls']} LLM calls · {u['tool_calls']} tool calls · {u['input_tokens']}/{u['output_tokens']} tok"
 c.print(f"  [dim]{time.time() - t0:.1f} s · {stats}[/dim]")
 assert turn["status"] == "awaiting_approval", turn
 
