@@ -63,7 +63,9 @@ class ScriptedTripModel(BaseChatModel):
                 try:
                     name = resolve_place(cand)[1]["name"]
                 except ValueError:
-                    continue
+                    name = (
+                        cand.strip()
+                    )  # like a real model: pass the place through; the intake node rejects it
                 if name != out.get("origin"):
                     out[field] = name
                     break
@@ -81,11 +83,11 @@ class ScriptedTripModel(BaseChatModel):
             out["days"] = n + 1 if m.group(2).startswith("night") else n
         if m := re.search(r"(\d+)\s*(?:people|persons?|adults?|travellers?|travelers?|pax|of us)", low):
             out["travellers"] = [f"Traveller {i + 1}" for i in range(int(m.group(1)))]
-        if m := re.search(r"(?:₹|rs\.?|inr|budget(?:\s+of)?)\s*([\d,]+)\s*(k)?", low):
-            v = int(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
-            out["budget_inr"] = v
-        elif m := re.search(r"([\d,]+)\s*(k)?\s*(?:inr|rupees|budget)", low):
-            out["budget_inr"] = int(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
+        budget = re.search(r"(?:₹|rs\.?|inr|budget(?:\s+of)?)\s*(\d[\d,]*)\s*(k)?", low) or re.search(
+            r"(\d[\d,]*)\s*(k)?\s*(?:inr|rupees|budget)", low
+        )
+        if budget:
+            out["budget_inr"] = int(budget.group(1).replace(",", "")) * (1000 if budget.group(2) else 1)
         for kind in ("beach", "heritage", "nature", "market", "museum", "food", "adventure", "culture"):
             if kind in low:
                 out["preferences"].append(kind)

@@ -148,3 +148,15 @@ def test_budget_guard_replaces_an_over_budget_model_pick():
     p = out["proposal"]
     assert p["within_budget"] is True and "budget guard" in p["reasoning"]
     assert p["hotel"]["hotel_id"] != premium["hotel_id"]
+
+
+def test_free_text_budget_and_unknown_destination_do_not_crash():
+    g = build_graph(ScriptedTripModel())
+    cfg = {"configurable": {"thread_id": "t-varkala"}}
+    msg = "plan a trip from bangalore to varkala , under 20k budget , 2 people ( couples )"
+    out = g.invoke({"messages": [HumanMessage(content=msg)]}, cfg)
+    assert out["phase"] == "collect"
+    assert "varkala" in out["messages"][-1].text.lower() and "goa" in out["messages"][-1].text
+    assert out["constraints"]["budget_inr"] == 20000 and out["constraints"]["destination"] is None
+    out = g.invoke({"messages": [HumanMessage(content="ok, Goa then, 2026-12-18 for 3 days")]}, cfg)
+    assert out["phase"] == "await_approval" and out["constraints"]["origin"] == "Bengaluru, India"

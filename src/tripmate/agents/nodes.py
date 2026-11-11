@@ -59,6 +59,26 @@ class Nodes:
             merged = known
         if merged.preferences:
             self.prefs_saver(merged.preferences)
+        unknown = [
+            k
+            for k in ("destination", "origin")
+            if getattr(merged, k) and not _known_place(getattr(merged, k))
+        ]
+        if unknown:
+            # a place outside the catalogue would fail in research/search later — say so now, with the options
+            names = [getattr(merged, k) for k in unknown]
+            for k in unknown:
+                setattr(merged, k, None)
+            text = (
+                f"I can't plan for {', '.join(names)} yet. Supported places: {', '.join(place_keys())}. "
+                "Which should I use?"
+            )
+            return {
+                "constraints": merged.model_dump(),
+                "messages": [AIMessage(content=text)],
+                "phase": "collect",
+                "usage": _usage(ai),
+            }
         missing = merged.missing()
         if missing:
             text = question or f"To plan this I still need: {', '.join(missing)}."
@@ -244,6 +264,16 @@ class Nodes:
         plan = "\n".join(f"- {d['date']} {d['title']}: {', '.join(d['activities'])}" for d in days)
         msg = f"Booked! References {refs}. Total ₹{p['total_inr']:,}.\n\nYour itinerary:\n{plan}"
         return {"bookings": results, "messages": [AIMessage(content=msg)], "phase": "done"}
+
+
+def _known_place(name: str) -> bool:
+    from tripmate.providers.catalog import resolve_place
+
+    try:
+        resolve_place(name)
+        return True
+    except ValueError:
+        return False
 
 
 def _cheapest(flights: dict[str, dict], origin: str | None, destination: str | None) -> dict | None:
