@@ -54,7 +54,7 @@ Nominatim / Open-Meteo / Overpass when `TOOLS_MODE=live`, curated fixtures other
 |---|---|---|
 | agent benchmark · scripted | **20/20 scenarios** fully passed, 100 % of 240 checks · p50 0.01 s / p95 0.08 s to proposal · 6 LLM + 6 tool calls, 1292/227 tokens per trip | `make bench` |
 | agent benchmark · gemini-3.5-flash-lite | **20/20 scenarios** fully passed, 100 % of 240 checks · p50 25.22 s / p95 56.77 s to proposal · 6.25 LLM + 6.1 tool calls, 5986/912 tokens per trip | `make bench` |
-| API load (LLM stubbed) | **37.53 trips/s** (112.6 req/s) at 2 VUs, p95 36.1 ms, 0.00 % errors | `make load` |
+| API load (LLM stubbed) | **33.3 trips/s** (99.9 req/s) at 20 VUs, p95 441.6 ms, 0.00 % errors | `make load` |
 | durability (restart mid-approval) | **10/10** resumed and booked · restart→healthy 1.03 s | `make durability` |
 
 Full report with charts and the list of what these numbers do **not** prove: [`bench/report.md`](bench/report.md) · raw: [`bench/results.json`](bench/results.json).

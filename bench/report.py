@@ -275,8 +275,8 @@ def main() -> None:
             rows.append(
                 f"| agent benchmark · {name} | **{d['fully_passed']}/{d['completed']} scenarios** fully passed, {100 * d['checks_passed'] / d['checks_total']:.0f} % of {d['checks_total']} checks · p50 {lat['p50']} s / p95 {lat['p95']} s to proposal · {d['llm_calls_per_trip']:g} LLM + {d['tool_calls_per_trip']:g} tool calls, {d['tokens_per_trip']['input']}/{d['tokens_per_trip']['output']} tokens per trip | `make bench` |"
             )
-        if load and load.get("best_within_slo"):
-            b = load["best_within_slo"]
+        if results["load"] and results["load"].get("best_within_slo"):
+            b = results["load"]["best_within_slo"]
             rows.append(
                 f"| API load (LLM stubbed) | **{b['trips_per_s']} trips/s** ({b['rps']} req/s) at {b['vus']} VUs, p95 {b['http_req_duration_ms']['p(95)']} ms, {100 * b['failed_rate']:.2f} % errors | `make load` |"
             )

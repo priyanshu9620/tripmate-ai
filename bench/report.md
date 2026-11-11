@@ -1,6 +1,6 @@
 # TripMate AI — benchmark report
 
-_Generated 2026-11-11 13:11 UTC by `bench/report.py` from the newest run of each benchmark in `bench/out/`. Do not edit by hand._
+_Generated 2026-11-11 13:12 UTC by `bench/report.py` from the newest run of each benchmark in `bench/out/`. Do not edit by hand._
 
 ## 1. Agent benchmark — 20 fixed trip requests through the real graph
 
