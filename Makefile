@@ -1,4 +1,4 @@
-.PHONY: sync up down logs test lint fmt run chat demo migrate bench durability load report
+.PHONY: sync up down logs test lint fmt run chat demo migrate bench durability load report infra-init infra-plan infra-apply infra-destroy infra-output
 
 sync:            ## install deps (uv)
 	uv sync
@@ -48,3 +48,21 @@ load:            ## k6 in Docker at 2/5/10/20 VUs against the API running with L
 
 report:          ## regenerate bench/report.md + charts + bench/results.json from the latest runs
 	uv run python bench/report.py
+
+# ---- AWS (infra/, OpenTofu). Claude prepares + plans; the user runs apply/destroy (billable). ----
+TOFU = tofu -chdir=infra
+
+infra-init:
+	$(TOFU) init -input=false
+
+infra-plan:      ## read-only: shows what apply would create
+	$(TOFU) plan -input=false -out=plan.out
+
+infra-apply:     ## creates billable resources (t3.micro + ALB ≈ $1/day); review infra-plan first
+	$(TOFU) apply -input=false plan.out
+
+infra-destroy:   ## tears everything down (ECR images included) — run after every session
+	$(TOFU) destroy -input=false
+
+infra-output:
+	$(TOFU) output

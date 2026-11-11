@@ -1,0 +1,6 @@
+# Copy to infra/terraform.tfvars (git-ignored) and fill in. Values go to SSM Parameter Store (SecureString).
+google_api_key    = ""   # Gemini key (same as .env GOOGLE_API_KEY)
+langsmith_api_key = ""   # optional; empty = tracing off on AWS
+# llm_provider = "google_genai"
+# llm_model    = "gemini-3.5-flash-lite"
+# tools_mode   = "live"
