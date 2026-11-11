@@ -13,3 +13,4 @@ bench/out/k6-*/
 # dropped into every clone by the laptop's global git template — never ours
 pre-commit-scripts/
 post-commit-scripts/
+aws-credentials

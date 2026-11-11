@@ -66,3 +66,10 @@ infra-destroy:   ## tears everything down (ECR images included) — run after ev
 
 infra-output:
 	$(TOFU) output
+
+# ---- portability: secrets travel in ONE encrypted archive (secrets.tar.enc), notes travel as plain files ----
+secrets-pack:    ## SECRETS_PASSPHRASE=... make secrets-pack   (then commit secrets.tar.enc)
+	scripts/secrets.sh pack
+
+secrets-unpack:  ## SECRETS_PASSPHRASE=... make secrets-unpack (fresh clone: restores .env, tfvars, tfstate)
+	scripts/secrets.sh unpack

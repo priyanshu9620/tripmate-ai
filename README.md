@@ -60,5 +60,9 @@ Nominatim / Open-Meteo / Overpass when `TOOLS_MODE=live`, curated fixtures other
 Full report with charts and the list of what these numbers do **not** prove: [`bench/report.md`](bench/report.md) · raw: [`bench/results.json`](bench/results.json).
 <!-- numbers:end -->
 
+## Project notes, memory and secrets
+Everything needed to continue on another machine is in this repo: [`notes/`](notes/) (decisions, build plan, progress, problems, KT),
+[`notes/claude-memory/`](notes/claude-memory/) and `secrets.tar.enc` (one passphrase). Start at [`notes/BOOTSTRAP.md`](notes/BOOTSTRAP.md).
+
 ## Roadmap
 0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory ✔ · 3 measurement · 4 AWS + CD · 5 interview material
