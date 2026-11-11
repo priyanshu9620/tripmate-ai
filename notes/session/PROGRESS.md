@@ -9,8 +9,9 @@
 - User applied the 2 fixes. Re-run deploy 43033540409: **all steps green incl. smoke**. 2nd conversation through the ALB
   with the 300 s timeout: 36 s turn, approve → booked, 2 trips in AWS Postgres. Gemini picked a premium hotel over budget
   → budget guard added in `nodes.py` (test with a deliberately over-budget model; 25 tests).
-- Pending: user `git push` (3 local commits: secrets archive, infra fixes + evidence, budget guard → auto-deploys),
-  then `make infra-destroy`, then `make secrets-pack` + commit + push (state changed).
+- User pushed (token-header one-off; archive 10,272 B on GitHub). Auto-deploy of aedabfb green (run 43034372673). Budget guard
+  verified live: Jaipur ₹45,000 → Ibis mid, ₹32,860 within budget. Pending: user `make infra-destroy`, then `make secrets-pack`
+  + commit + push. Phase 5 next.
 
 ## 2026-11-11 — Phase 4 code ready, apply handed to the user
 - `infra/` (OpenTofu, aws 5.82.2 from the local mirror): default VPC, 2 SGs, ECR, 7 SSM params, instance role, 1 × t3.micro
