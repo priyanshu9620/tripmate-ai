@@ -34,10 +34,10 @@ Order chosen so every phase is runnable, measurement comes before AWS, and the A
 - [x] `infra/` Terraform: VPC/SG, 1 × EC2 (user-data installs Docker, pulls GHCR image, compose up), ALB + target group (`/healthz`), SSM role, OIDC role for Actions, outputs (ALB DNS). Every resource block commented with what/why
 - [x] `deploy.yml`: GHCR push → SSM `docker compose pull && up -d` → smoke via ALB
 - [x] User runs `terraform apply`; Claude verifies: ALB URL serves `/ui`, a real conversation reaches the interrupt and resumes; one deploy triggered by a `main` push; screenshots into `docs/`
-- [ ] User runs `terraform destroy`; verify nothing billable remains
+- [◐] User runs `terraform destroy`; Claude verifies nothing billable remains (pending)
 - Exit: a merged PR deployed itself to AWS and the evidence is in the repo; stack destroyed.
 
-## Phase 5 — Interview material + resume rewrite  ☐
-- [ ] `docs/GUIDE.md`, `INTERVIEW_PREP/01…06`, `DEMO.md`; `kt/` synced
-- [ ] Resume lines rewritten with measured numbers (agents, tools, p50/p95 latency per plan, tokens/cost per plan, durability 10/10, load p95 at N VUs with LLM stubbed)
+## Phase 5 — Interview material + resume rewrite  ☑ 2026-11-11
+- [x] `docs/GUIDE.md`, `INTERVIEW_PREP/01…06`, `DEMO.md`; `kt/` superseded by INTERVIEW_PREP (canonical)
+- [x] Resume lines rewritten (notes/session/RESUME.md) with measured numbers (agents, tools, p50/p95 latency per plan, tokens/cost per plan, durability 10/10, load p95 at N VUs with LLM stubbed)
 - Exit: user can explain every part from the repo alone.

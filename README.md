@@ -64,5 +64,8 @@ Full report with charts and the list of what these numbers do **not** prove: [`b
 Everything needed to continue on another machine is in this repo: [`notes/`](notes/) (decisions, build plan, progress, problems, KT),
 [`notes/claude-memory/`](notes/claude-memory/) and `secrets.tar.enc` (one passphrase). Start at [`notes/BOOTSTRAP.md`](notes/BOOTSTRAP.md).
 
+## Docs
+[`docs/GUIDE.md`](docs/GUIDE.md) (the manual) · [`DEMO.md`](DEMO.md) · [`docs/aws-evidence.md`](docs/aws-evidence.md) · [`INTERVIEW_PREP/`](INTERVIEW_PREP/) · [`bench/report.md`](bench/report.md)
+
 ## Roadmap
-0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory ✔ · 3 measurement · 4 AWS + CD · 5 interview material
+0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory ✔ · 3 measurement ✔ · 4 AWS + CD ✔ · 5 interview material ✔ · next: real inventory sandbox, multi-worker serving, LLM-judge quality score

@@ -14,7 +14,11 @@ TripMate AI: Multi-Agent Trip Planner | LangGraph, FastAPI, PostgreSQL, Docker, 
 Neither line has a number. Measured numbers get added (D-9) and the lines are rewritten at the end.
 
 ## Where we are
-**2026-11-11 night:** Phases 0–4 code on `main`. Phase 4 infra is planned (22 resources, `infra/plan.out`) and
+**2026-11-11 late night:** ALL PHASES DONE (0–5). Only open item: the user's `make infra-destroy` + `make secrets-pack` +
+push; `AWS_DEPLOY_ENABLED` is already `false`. Canonical interview KT = `INTERVIEW_PREP/` (kt/ is the older draft).
+Resume lines with measured numbers: `notes/session/RESUME.md`. Rotate the LangSmith key when done (it was pasted in chat).
+
+Earlier: Phases 0–4 code on `main`. Phase 4 infra is planned (22 resources, `infra/plan.out`) and
 **waits for the user to apply** (Claude Code policy blocks `tofu apply`, ShopEase P-21). Bootstrap order after apply:
 (1) Claude: `gh secret set AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY` from `tofu output`, `gh variable set AWS_DEPLOY_ENABLED=true`,
 `gh workflow run deploy`; (2) verify `/healthz` + a real conversation through the ALB; (3) screenshots → `docs/`; (4) user runs
@@ -47,5 +51,4 @@ verified (1.8 s, 11 tokens). `.env` in the repo holds the Gemini key (git-ignore
    project with SCP (EC2/ELB/ECS/S3/CloudFront allowed, App Runner denied) — see shopease-notes D-21.
 
 ## Single next command
-User: `cd ~/Desktop/tripmate && git push` (auto-deploys the budget-guard commit; Claude verifies), then `make infra-destroy`, then
-`SECRETS_PASSPHRASE=… make secrets-pack && git add secrets.tar.enc && git commit -m 'chore: secrets' && git push`. Then Phase 5.
+User: `cd ~/Desktop/tripmate && make infra-destroy` then `SECRETS_PASSPHRASE=… make secrets-pack && git add secrets.tar.enc && git commit -m 'chore: secrets' && git push`. Claude: verify the account is empty.

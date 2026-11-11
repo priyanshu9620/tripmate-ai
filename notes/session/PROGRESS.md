@@ -1,5 +1,10 @@
 # Progress (newest first)
 
+## 2026-11-11 — Phase 5 done: manual, interview prep, resume lines
+- `docs/GUIDE.md` (config, every command, API table, conversation steps, troubleshooting, AWS in one screen),
+  `INTERVIEW_PREP/README + 01–06` (04 generated from PROBLEMS.md P-1…P-16), `notes/session/RESUME.md` (two lines with the
+  measured numbers), README docs section. `AWS_DEPLOY_ENABLED=false` set so pushes no longer deploy.
+
 ## 2026-11-11 — Phase 4 deployed: TripMate live on AWS via GitHub Actions
 - User applied `infra/` (26 resources). Claude set `AWS_ACCESS_KEY_ID/SECRET` + `AWS_DEPLOY_ENABLED` from `tofu output`
   and triggered `deploy`: build → ECR → SSM deploy.sh → ALB healthy, ≈2 min (run 43032175539). Smoke step failed on a
