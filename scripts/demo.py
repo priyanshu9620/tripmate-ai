@@ -57,7 +57,8 @@ c.print(f"  budget ₹{p['budget_inr']:,} → {'within budget' if p['within_budg
 for d in turn["itinerary"]["days"]:
     c.print(f"  {d['date']} {d['title']}: {', '.join(d['activities'])}")
 u = turn["usage"]
-stats = f"{u['llm_calls']} LLM calls · {u['tool_calls']} tool calls · {u['input_tokens']}/{u['output_tokens']} tok"
+tok = f"{u['input_tokens']}/{u['output_tokens']} tokens"
+stats = f"{u['llm_calls']} LLM calls · {u['tool_calls']} tool calls · {tok}"
 c.print(f"  [dim]{time.time() - t0:.1f} s · {stats}[/dim]")
 assert turn["status"] == "awaiting_approval", turn
 
