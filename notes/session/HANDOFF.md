@@ -14,7 +14,7 @@ TripMate AI: Multi-Agent Trip Planner | LangGraph, FastAPI, PostgreSQL, Docker, 
 Neither line has a number. Measured numbers get added (D-9) and the lines are rewritten at the end.
 
 ## Where we are
-**2026-11-11 late night:** ALL PHASES DONE (0–5). AWS destroyed and verified empty; secrets repacked. `AWS_DEPLOY_ENABLED` is `false`. Canonical interview KT = `INTERVIEW_PREP/` (kt/ is the older draft).
+**2026-11-11 late night:** ALL PHASES DONE (0–5). AWS destroyed and verified empty; secrets repacked. `AWS_DEPLOY_ENABLED` is `false`. Pre-demo AWS bring-up/tear-down = `docs/RUNBOOK.md`. Canonical interview KT = `INTERVIEW_PREP/` (kt/ is the older draft).
 Resume lines with measured numbers: `notes/session/RESUME.md`. Rotate the LangSmith key when done (it was pasted in chat).
 
 Earlier: Phases 0–4 code on `main`. Phase 4 infra is planned (22 resources, `infra/plan.out`) and
