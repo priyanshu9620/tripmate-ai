@@ -1,0 +1,91 @@
+hotel_id,destination,name,tier,base_rate_inr,rating,area
+H001,goa,Zostel Goa,budget,1437,2.8,Beachside
+H002,goa,Treebo Goa,budget,1474,3.0,Riverside
+H003,goa,FabHotel Goa,budget,1511,3.2,Beachside
+H004,goa,Lemon Tree Goa,mid,3948,3.9,Old Town
+H005,goa,Ginger Goa,mid,3985,4.1,City Centre
+H006,goa,Ibis Goa,mid,4022,4.3,Old Town
+H007,goa,Taj Goa,premium,9759,4.5,Riverside
+H008,goa,Marriott Goa,premium,9796,4.7,Beachside
+H009,goa,Hyatt Regency Goa,premium,9833,4.9,Riverside
+H010,jaipur,Zostel Jaipur,budget,1770,2.8,City Centre
+H011,jaipur,Treebo Jaipur,budget,1807,3.0,Old Town
+H012,jaipur,FabHotel Jaipur,budget,1844,3.2,City Centre
+H013,jaipur,Lemon Tree Jaipur,mid,4281,3.9,Beachside
+H014,jaipur,Ginger Jaipur,mid,4318,4.1,Riverside
+H015,jaipur,Ibis Jaipur,mid,4355,4.3,Beachside
+H016,jaipur,Taj Jaipur,premium,10092,4.5,Old Town
+H017,jaipur,Marriott Jaipur,premium,10129,4.7,City Centre
+H018,jaipur,Hyatt Regency Jaipur,premium,10166,4.9,Old Town
+H019,manali,Zostel Manali,budget,2103,2.8,Riverside
+H020,manali,Treebo Manali,budget,2140,3.0,Beachside
+H021,manali,FabHotel Manali,budget,2177,3.2,Riverside
+H022,manali,Lemon Tree Manali,mid,4614,3.9,City Centre
+H023,manali,Ginger Manali,mid,4651,4.1,Old Town
+H024,manali,Ibis Manali,mid,4688,4.3,City Centre
+H025,manali,Taj Manali,premium,9525,4.5,Beachside
+H026,manali,Marriott Manali,premium,9562,4.7,Riverside
+H027,manali,Hyatt Regency Manali,premium,9599,4.9,Beachside
+H028,kochi,Zostel Kochi,budget,1536,2.8,Old Town
+H029,kochi,Treebo Kochi,budget,1573,3.0,City Centre
+H030,kochi,FabHotel Kochi,budget,1610,3.2,Old Town
+H031,kochi,Lemon Tree Kochi,mid,4047,3.9,Riverside
+H032,kochi,Ginger Kochi,mid,4084,4.1,Beachside
+H033,kochi,Ibis Kochi,mid,4121,4.3,Riverside
+H034,kochi,Taj Kochi,premium,9858,4.5,City Centre
+H035,kochi,Marriott Kochi,premium,9895,4.7,Old Town
+H036,kochi,Hyatt Regency Kochi,premium,9932,4.9,City Centre
+H037,udaipur,Zostel Udaipur,budget,1869,2.8,Beachside
+H038,udaipur,Treebo Udaipur,budget,1906,3.0,Riverside
+H039,udaipur,FabHotel Udaipur,budget,1943,3.2,Beachside
+H040,udaipur,Lemon Tree Udaipur,mid,4380,3.9,Old Town
+H041,udaipur,Ginger Udaipur,mid,4417,4.1,City Centre
+H042,udaipur,Ibis Udaipur,mid,4454,4.3,Old Town
+H043,udaipur,Taj Udaipur,premium,10191,4.5,Riverside
+H044,udaipur,Marriott Udaipur,premium,10228,4.7,Beachside
+H045,udaipur,Hyatt Regency Udaipur,premium,10265,4.9,Riverside
+H046,rishikesh,Zostel Rishikesh,budget,2202,2.8,City Centre
+H047,rishikesh,Treebo Rishikesh,budget,2239,3.0,Old Town
+H048,rishikesh,FabHotel Rishikesh,budget,2276,3.2,City Centre
+H049,rishikesh,Lemon Tree Rishikesh,mid,3813,3.9,Beachside
+H050,rishikesh,Ginger Rishikesh,mid,3850,4.1,Riverside
+H051,rishikesh,Ibis Rishikesh,mid,3887,4.3,Beachside
+H052,rishikesh,Taj Rishikesh,premium,9624,4.5,Old Town
+H053,rishikesh,Marriott Rishikesh,premium,9661,4.7,City Centre
+H054,rishikesh,Hyatt Regency Rishikesh,premium,9698,4.9,Old Town
+H055,bali,Zostel Bali,budget,1635,2.8,Riverside
+H056,bali,Treebo Bali,budget,1672,3.0,Beachside
+H057,bali,FabHotel Bali,budget,1709,3.2,Riverside
+H058,bali,Lemon Tree Bali,mid,4146,3.9,City Centre
+H059,bali,Ginger Bali,mid,4183,4.1,Old Town
+H060,bali,Ibis Bali,mid,4220,4.3,City Centre
+H061,bali,Taj Bali,premium,9957,4.5,Beachside
+H062,bali,Marriott Bali,premium,9994,4.7,Riverside
+H063,bali,Hyatt Regency Bali,premium,10031,4.9,Beachside
+H064,dubai,Zostel Dubai,budget,1968,2.8,Old Town
+H065,dubai,Treebo Dubai,budget,2005,3.0,City Centre
+H066,dubai,FabHotel Dubai,budget,2042,3.2,Old Town
+H067,dubai,Lemon Tree Dubai,mid,4479,3.9,Riverside
+H068,dubai,Ginger Dubai,mid,4516,4.1,Beachside
+H069,dubai,Ibis Dubai,mid,4553,4.3,Riverside
+H070,dubai,Taj Dubai,premium,10290,4.5,City Centre
+H071,dubai,Marriott Dubai,premium,10327,4.7,Old Town
+H072,dubai,Hyatt Regency Dubai,premium,10364,4.9,City Centre
+H073,singapore,Zostel Singapore,budget,1401,2.8,Beachside
+H074,singapore,Treebo Singapore,budget,1438,3.0,Riverside
+H075,singapore,FabHotel Singapore,budget,1475,3.2,Beachside
+H076,singapore,Lemon Tree Singapore,mid,3912,3.9,Old Town
+H077,singapore,Ginger Singapore,mid,3949,4.1,City Centre
+H078,singapore,Ibis Singapore,mid,3986,4.3,Old Town
+H079,singapore,Taj Singapore,premium,9723,4.5,Riverside
+H080,singapore,Marriott Singapore,premium,9760,4.7,Beachside
+H081,singapore,Hyatt Regency Singapore,premium,9797,4.9,Riverside
+H082,bangkok,Zostel Bangkok,budget,1734,2.8,City Centre
+H083,bangkok,Treebo Bangkok,budget,1771,3.0,Old Town
+H084,bangkok,FabHotel Bangkok,budget,1808,3.2,City Centre
+H085,bangkok,Lemon Tree Bangkok,mid,4245,3.9,Beachside
+H086,bangkok,Ginger Bangkok,mid,4282,4.1,Riverside
+H087,bangkok,Ibis Bangkok,mid,4319,4.3,Beachside
+H088,bangkok,Taj Bangkok,premium,10056,4.5,Old Town
+H089,bangkok,Marriott Bangkok,premium,10093,4.7,City Centre
+H090,bangkok,Hyatt Regency Bangkok,premium,10130,4.9,Old Town

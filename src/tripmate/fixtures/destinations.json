@@ -1,0 +1,1213 @@
+{
+ "destinations": {
+  "goa": {
+   "name": "Goa, India",
+   "lat": 15.2993,
+   "lon": 74.124,
+   "country": "IN",
+   "airport": "GOI",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 32,
+     "tmin": 20,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 32,
+     "tmin": 21,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 33,
+     "tmin": 24,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 34,
+     "tmin": 26,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 34,
+     "tmin": 27,
+     "rain_pct": 35
+    },
+    {
+     "tmax": 31,
+     "tmin": 25,
+     "rain_pct": 85
+    },
+    {
+     "tmax": 29,
+     "tmin": 24,
+     "rain_pct": 90
+    },
+    {
+     "tmax": 29,
+     "tmin": 24,
+     "rain_pct": 85
+    },
+    {
+     "tmax": 30,
+     "tmin": 24,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 32,
+     "tmin": 24,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 33,
+     "tmin": 22,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 33,
+     "tmin": 21,
+     "rain_pct": 5
+    }
+   ],
+   "pois": [
+    {
+     "name": "Palolem Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Baga Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Basilica of Bom Jesus",
+     "kind": "heritage"
+    },
+    {
+     "name": "Fort Aguada",
+     "kind": "heritage"
+    },
+    {
+     "name": "Dudhsagar Falls",
+     "kind": "nature"
+    },
+    {
+     "name": "Anjuna Flea Market",
+     "kind": "market"
+    },
+    {
+     "name": "Chapora Fort",
+     "kind": "heritage"
+    },
+    {
+     "name": "Old Goa Churches",
+     "kind": "heritage"
+    },
+    {
+     "name": "Spice Plantation Tour",
+     "kind": "nature"
+    },
+    {
+     "name": "Saturday Night Market, Arpora",
+     "kind": "market"
+    }
+   ]
+  },
+  "jaipur": {
+   "name": "Jaipur, India",
+   "lat": 26.9124,
+   "lon": 75.7873,
+   "country": "IN",
+   "airport": "JAI",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 22,
+     "tmin": 8,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 25,
+     "tmin": 11,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 31,
+     "tmin": 16,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 37,
+     "tmin": 22,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 41,
+     "tmin": 27,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 39,
+     "tmin": 28,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 34,
+     "tmin": 26,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 33,
+     "tmin": 24,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 33,
+     "tmin": 19,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 28,
+     "tmin": 13,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 24,
+     "tmin": 9,
+     "rain_pct": 2
+    }
+   ],
+   "pois": [
+    {
+     "name": "Amber Fort",
+     "kind": "heritage"
+    },
+    {
+     "name": "Hawa Mahal",
+     "kind": "heritage"
+    },
+    {
+     "name": "City Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Jantar Mantar",
+     "kind": "heritage"
+    },
+    {
+     "name": "Nahargarh Fort",
+     "kind": "heritage"
+    },
+    {
+     "name": "Johari Bazaar",
+     "kind": "market"
+    },
+    {
+     "name": "Jal Mahal",
+     "kind": "heritage"
+    },
+    {
+     "name": "Albert Hall Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Chokhi Dhani",
+     "kind": "food"
+    },
+    {
+     "name": "Bapu Bazaar",
+     "kind": "market"
+    }
+   ]
+  },
+  "manali": {
+   "name": "Manali, India",
+   "lat": 32.2396,
+   "lon": 77.1887,
+   "country": "IN",
+   "airport": "KUU",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 8,
+     "tmin": -2,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 10,
+     "tmin": 0,
+     "rain_pct": 35
+    },
+    {
+     "tmax": 14,
+     "tmin": 3,
+     "rain_pct": 40
+    },
+    {
+     "tmax": 19,
+     "tmin": 6,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 23,
+     "tmin": 9,
+     "rain_pct": 25
+    },
+    {
+     "tmax": 26,
+     "tmin": 13,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 25,
+     "tmin": 15,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 24,
+     "tmin": 15,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 23,
+     "tmin": 11,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 19,
+     "tmin": 5,
+     "rain_pct": 15
+    },
+    {
+     "tmax": 14,
+     "tmin": 1,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 10,
+     "tmin": -1,
+     "rain_pct": 20
+    }
+   ],
+   "pois": [
+    {
+     "name": "Solang Valley",
+     "kind": "nature"
+    },
+    {
+     "name": "Rohtang Pass",
+     "kind": "nature"
+    },
+    {
+     "name": "Hadimba Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Old Manali",
+     "kind": "market"
+    },
+    {
+     "name": "Jogini Falls",
+     "kind": "nature"
+    },
+    {
+     "name": "Vashisht Hot Springs",
+     "kind": "nature"
+    },
+    {
+     "name": "Mall Road",
+     "kind": "market"
+    },
+    {
+     "name": "Atal Tunnel",
+     "kind": "nature"
+    },
+    {
+     "name": "Beas River Rafting",
+     "kind": "adventure"
+    },
+    {
+     "name": "Naggar Castle",
+     "kind": "heritage"
+    }
+   ]
+  },
+  "kochi": {
+   "name": "Kochi, Kerala, India",
+   "lat": 9.9312,
+   "lon": 76.2673,
+   "country": "IN",
+   "airport": "COK",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 31,
+     "tmin": 23,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 32,
+     "tmin": 26,
+     "rain_pct": 15
+    },
+    {
+     "tmax": 32,
+     "tmin": 26,
+     "rain_pct": 35
+    },
+    {
+     "tmax": 31,
+     "tmin": 26,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 29,
+     "tmin": 24,
+     "rain_pct": 90
+    },
+    {
+     "tmax": 28,
+     "tmin": 24,
+     "rain_pct": 85
+    },
+    {
+     "tmax": 28,
+     "tmin": 24,
+     "rain_pct": 80
+    },
+    {
+     "tmax": 29,
+     "tmin": 24,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 30,
+     "tmin": 24,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 30,
+     "tmin": 24,
+     "rain_pct": 35
+    },
+    {
+     "tmax": 31,
+     "tmin": 23,
+     "rain_pct": 10
+    }
+   ],
+   "pois": [
+    {
+     "name": "Fort Kochi",
+     "kind": "heritage"
+    },
+    {
+     "name": "Chinese Fishing Nets",
+     "kind": "heritage"
+    },
+    {
+     "name": "Mattancherry Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Alleppey Backwaters Houseboat",
+     "kind": "nature"
+    },
+    {
+     "name": "Marine Drive",
+     "kind": "nature"
+    },
+    {
+     "name": "Jew Town Spice Market",
+     "kind": "market"
+    },
+    {
+     "name": "Kathakali Performance",
+     "kind": "culture"
+    },
+    {
+     "name": "Cherai Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Hill Palace Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Munnar Day Trip",
+     "kind": "nature"
+    }
+   ]
+  },
+  "udaipur": {
+   "name": "Udaipur, India",
+   "lat": 24.5854,
+   "lon": 73.7125,
+   "country": "IN",
+   "airport": "UDR",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 24,
+     "tmin": 8,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 27,
+     "tmin": 11,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 32,
+     "tmin": 16,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 37,
+     "tmin": 22,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 39,
+     "tmin": 26,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 36,
+     "tmin": 26,
+     "rain_pct": 25
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 30,
+     "tmin": 23,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 32,
+     "tmin": 22,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 33,
+     "tmin": 18,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 29,
+     "tmin": 12,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 25,
+     "tmin": 9,
+     "rain_pct": 2
+    }
+   ],
+   "pois": [
+    {
+     "name": "City Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Lake Pichola Boat Ride",
+     "kind": "nature"
+    },
+    {
+     "name": "Jag Mandir",
+     "kind": "heritage"
+    },
+    {
+     "name": "Saheliyon ki Bari",
+     "kind": "nature"
+    },
+    {
+     "name": "Jagdish Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Fateh Sagar Lake",
+     "kind": "nature"
+    },
+    {
+     "name": "Bagore ki Haveli",
+     "kind": "culture"
+    },
+    {
+     "name": "Hathi Pol Bazaar",
+     "kind": "market"
+    },
+    {
+     "name": "Monsoon Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Ambrai Ghat",
+     "kind": "food"
+    }
+   ]
+  },
+  "rishikesh": {
+   "name": "Rishikesh, India",
+   "lat": 30.0869,
+   "lon": 78.2676,
+   "country": "IN",
+   "airport": "DED",
+   "tz": "Asia/Kolkata",
+   "climate": [
+    {
+     "tmax": 20,
+     "tmin": 7,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 23,
+     "tmin": 9,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 28,
+     "tmin": 13,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 34,
+     "tmin": 18,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 37,
+     "tmin": 22,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 36,
+     "tmin": 24,
+     "rain_pct": 35
+    },
+    {
+     "tmax": 31,
+     "tmin": 23,
+     "rain_pct": 80
+    },
+    {
+     "tmax": 30,
+     "tmin": 23,
+     "rain_pct": 80
+    },
+    {
+     "tmax": 31,
+     "tmin": 21,
+     "rain_pct": 40
+    },
+    {
+     "tmax": 29,
+     "tmin": 15,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 25,
+     "tmin": 10,
+     "rain_pct": 2
+    },
+    {
+     "tmax": 21,
+     "tmin": 7,
+     "rain_pct": 5
+    }
+   ],
+   "pois": [
+    {
+     "name": "Laxman Jhula",
+     "kind": "heritage"
+    },
+    {
+     "name": "Triveni Ghat Ganga Aarti",
+     "kind": "culture"
+    },
+    {
+     "name": "White-water Rafting",
+     "kind": "adventure"
+    },
+    {
+     "name": "Beatles Ashram",
+     "kind": "heritage"
+    },
+    {
+     "name": "Neer Garh Waterfall",
+     "kind": "nature"
+    },
+    {
+     "name": "Parmarth Niketan",
+     "kind": "culture"
+    },
+    {
+     "name": "Bungee Jumping, Mohan Chatti",
+     "kind": "adventure"
+    },
+    {
+     "name": "Ram Jhula",
+     "kind": "heritage"
+    },
+    {
+     "name": "Vashishta Cave",
+     "kind": "nature"
+    },
+    {
+     "name": "Tapovan Cafes",
+     "kind": "food"
+    }
+   ]
+  },
+  "bali": {
+   "name": "Bali, Indonesia",
+   "lat": -8.4095,
+   "lon": 115.1889,
+   "country": "ID",
+   "airport": "DPS",
+   "tz": "Asia/Makassar",
+   "climate": [
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 70
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 40
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 30,
+     "tmin": 23,
+     "rain_pct": 20
+    },
+    {
+     "tmax": 29,
+     "tmin": 23,
+     "rain_pct": 15
+    },
+    {
+     "tmax": 29,
+     "tmin": 23,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 30,
+     "tmin": 23,
+     "rain_pct": 15
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 30
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 65
+    }
+   ],
+   "pois": [
+    {
+     "name": "Uluwatu Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Tegallalang Rice Terraces",
+     "kind": "nature"
+    },
+    {
+     "name": "Ubud Monkey Forest",
+     "kind": "nature"
+    },
+    {
+     "name": "Seminyak Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Tanah Lot",
+     "kind": "heritage"
+    },
+    {
+     "name": "Mount Batur Sunrise Trek",
+     "kind": "adventure"
+    },
+    {
+     "name": "Nusa Penida Day Trip",
+     "kind": "nature"
+    },
+    {
+     "name": "Ubud Art Market",
+     "kind": "market"
+    },
+    {
+     "name": "Tirta Empul",
+     "kind": "heritage"
+    },
+    {
+     "name": "Jimbaran Seafood",
+     "kind": "food"
+    }
+   ]
+  },
+  "dubai": {
+   "name": "Dubai, UAE",
+   "lat": 25.2048,
+   "lon": 55.2708,
+   "country": "AE",
+   "airport": "DXB",
+   "tz": "Asia/Dubai",
+   "climate": [
+    {
+     "tmax": 24,
+     "tmin": 14,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 25,
+     "tmin": 15,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 28,
+     "tmin": 18,
+     "rain_pct": 8
+    },
+    {
+     "tmax": 33,
+     "tmin": 21,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 38,
+     "tmin": 25,
+     "rain_pct": 1
+    },
+    {
+     "tmax": 40,
+     "tmin": 28,
+     "rain_pct": 0
+    },
+    {
+     "tmax": 41,
+     "tmin": 30,
+     "rain_pct": 0
+    },
+    {
+     "tmax": 41,
+     "tmin": 31,
+     "rain_pct": 0
+    },
+    {
+     "tmax": 39,
+     "tmin": 28,
+     "rain_pct": 0
+    },
+    {
+     "tmax": 35,
+     "tmin": 24,
+     "rain_pct": 1
+    },
+    {
+     "tmax": 30,
+     "tmin": 19,
+     "rain_pct": 3
+    },
+    {
+     "tmax": 26,
+     "tmin": 16,
+     "rain_pct": 8
+    }
+   ],
+   "pois": [
+    {
+     "name": "Burj Khalifa",
+     "kind": "landmark"
+    },
+    {
+     "name": "Dubai Mall",
+     "kind": "market"
+    },
+    {
+     "name": "Desert Safari",
+     "kind": "adventure"
+    },
+    {
+     "name": "Dubai Marina",
+     "kind": "nature"
+    },
+    {
+     "name": "Gold Souk",
+     "kind": "market"
+    },
+    {
+     "name": "Palm Jumeirah",
+     "kind": "landmark"
+    },
+    {
+     "name": "Museum of the Future",
+     "kind": "museum"
+    },
+    {
+     "name": "Al Fahidi Historic District",
+     "kind": "heritage"
+    },
+    {
+     "name": "Dubai Creek Abra Ride",
+     "kind": "culture"
+    },
+    {
+     "name": "Jumeirah Beach",
+     "kind": "beach"
+    }
+   ]
+  },
+  "singapore": {
+   "name": "Singapore",
+   "lat": 1.3521,
+   "lon": 103.8198,
+   "country": "SG",
+   "airport": "SIN",
+   "tz": "Asia/Singapore",
+   "climate": [
+    {
+     "tmax": 30,
+     "tmin": 24,
+     "rain_pct": 60
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 50
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 50
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 31,
+     "tmin": 25,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 31,
+     "tmin": 25,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 31,
+     "tmin": 25,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 31,
+     "tmin": 25,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 30,
+     "tmin": 24,
+     "rain_pct": 70
+    }
+   ],
+   "pois": [
+    {
+     "name": "Gardens by the Bay",
+     "kind": "nature"
+    },
+    {
+     "name": "Marina Bay Sands SkyPark",
+     "kind": "landmark"
+    },
+    {
+     "name": "Sentosa Island",
+     "kind": "beach"
+    },
+    {
+     "name": "Chinatown",
+     "kind": "heritage"
+    },
+    {
+     "name": "Singapore Zoo",
+     "kind": "nature"
+    },
+    {
+     "name": "Hawker Centre Food Tour",
+     "kind": "food"
+    },
+    {
+     "name": "Little India",
+     "kind": "heritage"
+    },
+    {
+     "name": "Universal Studios",
+     "kind": "adventure"
+    },
+    {
+     "name": "National Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Clarke Quay",
+     "kind": "nature"
+    }
+   ]
+  },
+  "bangkok": {
+   "name": "Bangkok, Thailand",
+   "lat": 13.7563,
+   "lon": 100.5018,
+   "country": "TH",
+   "airport": "BKK",
+   "tz": "Asia/Bangkok",
+   "climate": [
+    {
+     "tmax": 32,
+     "tmin": 22,
+     "rain_pct": 5
+    },
+    {
+     "tmax": 33,
+     "tmin": 24,
+     "rain_pct": 10
+    },
+    {
+     "tmax": 34,
+     "tmin": 26,
+     "rain_pct": 15
+    },
+    {
+     "tmax": 35,
+     "tmin": 27,
+     "rain_pct": 20
+    },
+    {
+     "tmax": 34,
+     "tmin": 26,
+     "rain_pct": 45
+    },
+    {
+     "tmax": 33,
+     "tmin": 26,
+     "rain_pct": 50
+    },
+    {
+     "tmax": 33,
+     "tmin": 26,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 33,
+     "tmin": 26,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 65
+    },
+    {
+     "tmax": 32,
+     "tmin": 25,
+     "rain_pct": 55
+    },
+    {
+     "tmax": 31,
+     "tmin": 24,
+     "rain_pct": 20
+    },
+    {
+     "tmax": 31,
+     "tmin": 22,
+     "rain_pct": 5
+    }
+   ],
+   "pois": [
+    {
+     "name": "Grand Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Wat Pho",
+     "kind": "heritage"
+    },
+    {
+     "name": "Chatuchak Weekend Market",
+     "kind": "market"
+    },
+    {
+     "name": "Wat Arun",
+     "kind": "heritage"
+    },
+    {
+     "name": "Khao San Road",
+     "kind": "food"
+    },
+    {
+     "name": "Chao Phraya River Cruise",
+     "kind": "nature"
+    },
+    {
+     "name": "Jim Thompson House",
+     "kind": "museum"
+    },
+    {
+     "name": "Floating Market",
+     "kind": "market"
+    },
+    {
+     "name": "Lumphini Park",
+     "kind": "nature"
+    },
+    {
+     "name": "Chinatown Yaowarat",
+     "kind": "food"
+    }
+   ]
+  },
+  "delhi": {
+   "name": "Delhi, India",
+   "lat": 28.6139,
+   "lon": 77.209,
+   "country": "IN",
+   "airport": "DEL",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "mumbai": {
+   "name": "Mumbai, India",
+   "lat": 19.076,
+   "lon": 72.8777,
+   "country": "IN",
+   "airport": "BOM",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "bengaluru": {
+   "name": "Bengaluru, India",
+   "lat": 12.9716,
+   "lon": 77.5946,
+   "country": "IN",
+   "airport": "BLR",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "hyderabad": {
+   "name": "Hyderabad, India",
+   "lat": 17.385,
+   "lon": 78.4867,
+   "country": "IN",
+   "airport": "HYD",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "kolkata": {
+   "name": "Kolkata, India",
+   "lat": 22.5726,
+   "lon": 88.3639,
+   "country": "IN",
+   "airport": "CCU",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "chennai": {
+   "name": "Chennai, India",
+   "lat": 13.0827,
+   "lon": 80.2707,
+   "country": "IN",
+   "airport": "MAA",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "pune": {
+   "name": "Pune, India",
+   "lat": 18.5204,
+   "lon": 73.8567,
+   "country": "IN",
+   "airport": "PNQ",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  },
+  "dehradun": {
+   "name": "Dehradun, India",
+   "lat": 30.3165,
+   "lon": 78.0322,
+   "country": "IN",
+   "airport": "DED",
+   "tz": "Asia/Kolkata",
+   "climate": null,
+   "pois": []
+  }
+ },
+ "aliases": {
+  "kerala": "kochi",
+  "new delhi": "delhi",
+  "bangalore": "bengaluru",
+  "bombay": "mumbai",
+  "panaji": "goa",
+  "panjim": "goa",
+  "denpasar": "bali"
+ }
+}

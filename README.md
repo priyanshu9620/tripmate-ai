@@ -13,8 +13,14 @@ make chat                # terminal chat
 make test                # offline tests, no network
 ```
 
+## Tools (Phase 1)
+Seven LangChain tools in `src/tripmate/tools/`: `geocode`, `weather_forecast`, `points_of_interest` (live via
+Nominatim / Open-Meteo / Overpass when `TOOLS_MODE=live`, curated fixtures otherwise, with automatic fallback),
+`search_flights`, `search_hotels` (simulated, deterministic inventory in `providers/`), and the two mutating tools
+`book_flight`, `book_hotel` (idempotent, in-process ledger). `uv run tm tools demo --destination Goa` shows them.
+
 ## Measured numbers
 Arrive in Phase 3 (`bench/`). Nothing here is asserted by hand.
 
 ## Roadmap
-0 skeleton ✔ · 1 tools · 2 multi-agent graph + HITL + Postgres memory · 3 measurement · 4 AWS + CD · 5 interview material
+0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory · 3 measurement · 4 AWS + CD · 5 interview material

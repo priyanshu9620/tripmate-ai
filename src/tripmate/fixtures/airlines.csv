@@ -1,0 +1,9 @@
+code,name,base_fare_inr,per_km_inr,intl,domestic
+6E,IndiGo,1800,3.2,1,1
+AI,Air India,2400,3.6,1,1
+UK,Vistara,2600,3.9,1,1
+SG,SpiceJet,1700,3.1,0,1
+QP,Akasa Air,1750,3.0,0,1
+EK,Emirates,9000,5.5,1,0
+SQ,Singapore Airlines,9500,5.8,1,0
+TG,Thai Airways,8000,5.2,1,0
