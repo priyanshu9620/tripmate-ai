@@ -16,8 +16,8 @@ def _rng(*parts: object) -> random.Random:
 def search_flights(origin: str, destination: str, travel_date: date, passengers: int = 1) -> list[dict]:
     okey, o = resolve_place(origin)
     dkey, d = resolve_place(destination)
-    if okey == dkey:
-        return []
+    if okey == dkey or o["airport"] == d["airport"]:
+        return []  # same city / same airport: nothing to fly
     km = haversine_km(o["lat"], o["lon"], d["lat"], d["lon"])
     international = o["country"] != d["country"]
     pool = [a for a in airlines() if (a["intl"] if international else a["domestic"])]

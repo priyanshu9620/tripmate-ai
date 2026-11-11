@@ -35,6 +35,7 @@ def test_flights_are_deterministic_sorted_and_scale_with_passengers():
     two = flights.search_flights("Delhi", "Goa", D, 2)
     assert two[0]["total_inr"] == 2 * two[0]["price_per_person_inr"]
     assert flights.search_flights("Goa", "Goa", D) == []
+    assert flights.search_flights("Dehradun", "Rishikesh", D) == []  # same airport (DED)
 
 
 def test_airline_pool_matches_route_type():

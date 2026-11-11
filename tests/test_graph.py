@@ -54,9 +54,8 @@ def test_full_flow_pauses_for_approval_then_books():
     intr = out["__interrupt__"][0].value
     assert intr["type"] == "approval_request" and intr["proposal"]["within_budget"] is True
     assert len(out["itinerary"]["days"]) == 4
-    assert out["research"]["pois"]["count"] >= 2 and all(
-        p["kind"] == "beach" for p in out["research"]["pois"]["items"]
-    )
+    assert out["research"]["pois"]["count"] >= 8  # unfiltered: the planner gets variety
+    assert "Beach" in out["itinerary"]["days"][0]["activities"][0]  # preferences steer the plan
     assert out["usage"]["llm_calls"] >= 5 and out["usage"]["tool_calls"] == 6
     assert bookings.all_bookings() == []  # nothing booked before approval
     out = g.invoke(Command(resume={"decision": "approve"}), cfg)
@@ -84,3 +83,24 @@ def test_over_budget_is_flagged_not_hidden():
     out = g.invoke({"messages": [HumanMessage(content=ASK.replace("₹60,000", "₹5,000"))]}, cfg)
     p = out["__interrupt__"][0].value["proposal"]
     assert p["within_budget"] is False and "OVER BUDGET" in out["__interrupt__"][0].value["summary"]
+
+
+def test_budgeter_respects_seats_and_rooms_for_a_group_of_six():
+    g = build_graph(ScriptedTripModel())
+    cfg = {"configurable": {"thread_id": "t-six"}}
+    out = g.invoke(
+        {
+            "messages": [
+                HumanMessage(
+                    content="Trip from Delhi to Jaipur, 2027-01-15, 3 days, 6 people, budget ₹120000"
+                )
+            ]
+        },
+        cfg,
+    )
+    p = out["__interrupt__"][0].value["proposal"]
+    assert (
+        p["outbound"]["seats_left"] >= 6 and p["return"]["seats_left"] >= 6 and p["hotel"]["rooms_left"] >= 3
+    )
+    out = g.invoke(Command(resume={"decision": "approve"}), cfg)
+    assert out["phase"] == "done" and all(b["ok"] for b in out["bookings"])

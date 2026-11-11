@@ -1,0 +1,163 @@
+# 20 fixed trip requests for the agent benchmark. Deterministic (fixtures, simulated inventory, fixed dates).
+# `ask` is the single user message; checks derive from these fields, never from the model's answer.
+- id: s01-goa-beach
+  ask: "Plan a trip from Delhi to Goa, 2026-12-18, 4 days, 2 people (Asha and Ravi), budget ₹60000. We like beaches and seafood."
+  origin: Delhi
+  destination: Goa
+  start_date: 2026-12-18
+  days: 4
+  travellers: 2
+  budget_inr: 60000
+- id: s02-jaipur-heritage
+  ask: "Plan a trip from Mumbai to Jaipur, 2027-01-10, 3 days, 2 people, budget ₹45000. We like heritage and markets."
+  origin: Mumbai
+  destination: Jaipur
+  start_date: 2027-01-10
+  days: 3
+  travellers: 2
+  budget_inr: 45000
+- id: s03-manali-solo
+  ask: "Plan a trip from Delhi to Manali, 2027-02-05, 5 days, 1 person, budget ₹35000. I like nature and adventure."
+  origin: Delhi
+  destination: Manali
+  start_date: 2027-02-05
+  days: 5
+  travellers: 1
+  budget_inr: 35000
+- id: s04-kochi-family
+  ask: "Plan a trip from Bengaluru to Kochi, 2026-12-24, 4 days, 4 people, budget ₹90000. Nature and food please."
+  origin: Bengaluru
+  destination: Kochi
+  start_date: 2026-12-24
+  days: 4
+  travellers: 4
+  budget_inr: 90000
+- id: s05-udaipur-tight
+  ask: "Plan a trip from Hyderabad to Udaipur, 2027-01-20, 3 days, 2 people, budget ₹30000. We like heritage."
+  origin: Hyderabad
+  destination: Udaipur
+  start_date: 2027-01-20
+  days: 3
+  travellers: 2
+  budget_inr: 30000
+- id: s06-rishikesh-adventure
+  ask: "Plan a trip from Delhi to Rishikesh, 2027-03-12, 2 days, 3 people, budget ₹25000. Adventure and culture."
+  origin: Delhi
+  destination: Rishikesh
+  start_date: 2027-03-12
+  days: 2
+  travellers: 3
+  budget_inr: 25000
+- id: s07-bali-honeymoon
+  ask: "Plan a trip from Mumbai to Bali, 2027-02-14, 6 days, 2 people, budget ₹180000. Beaches and nature."
+  origin: Mumbai
+  destination: Bali
+  start_date: 2027-02-14
+  days: 6
+  travellers: 2
+  budget_inr: 180000
+- id: s08-dubai-short
+  ask: "Plan a trip from Delhi to Dubai, 2027-01-05, 3 days, 2 people, budget ₹120000. Landmarks and markets."
+  origin: Delhi
+  destination: Dubai
+  start_date: 2027-01-05
+  days: 3
+  travellers: 2
+  budget_inr: 120000
+- id: s09-singapore-family
+  ask: "Plan a trip from Chennai to Singapore, 2027-03-20, 5 days, 3 people, budget ₹200000. Nature and food."
+  origin: Chennai
+  destination: Singapore
+  start_date: 2027-03-20
+  days: 5
+  travellers: 3
+  budget_inr: 200000
+- id: s10-bangkok-budget
+  ask: "Plan a trip from Kolkata to Bangkok, 2027-02-01, 4 days, 2 people, budget ₹70000. Markets and food."
+  origin: Kolkata
+  destination: Bangkok
+  start_date: 2027-02-01
+  days: 4
+  travellers: 2
+  budget_inr: 70000
+- id: s11-goa-monsoon
+  ask: "Plan a trip from Pune to Goa, 2027-07-10, 3 days, 2 people, budget ₹40000. Beaches."
+  origin: Pune
+  destination: Goa
+  start_date: 2027-07-10
+  days: 3
+  travellers: 2
+  budget_inr: 40000
+- id: s12-jaipur-big-group
+  ask: "Plan a trip from Delhi to Jaipur, 2027-01-15, 3 days, 6 people, budget ₹120000. Heritage and food."
+  origin: Delhi
+  destination: Jaipur
+  start_date: 2027-01-15
+  days: 3
+  travellers: 6
+  budget_inr: 120000
+- id: s13-manali-couple
+  ask: "Plan a trip from Chennai to Manali, 2027-04-02, 5 days, 2 people, budget ₹80000. Nature."
+  origin: Chennai
+  destination: Manali
+  start_date: 2027-04-02
+  days: 5
+  travellers: 2
+  budget_inr: 80000
+- id: s14-kochi-solo
+  ask: "Plan a trip from Delhi to Kochi, 2027-02-20, 4 days, 1 person, budget ₹40000. Culture and nature."
+  origin: Delhi
+  destination: Kochi
+  start_date: 2027-02-20
+  days: 4
+  travellers: 1
+  budget_inr: 40000
+- id: s15-udaipur-long
+  ask: "Plan a trip from Mumbai to Udaipur, 2027-01-25, 5 days, 2 people, budget ₹75000. Heritage and markets."
+  origin: Mumbai
+  destination: Udaipur
+  start_date: 2027-01-25
+  days: 5
+  travellers: 2
+  budget_inr: 75000
+- id: s16-rishikesh-impossible
+  ask: "Plan a trip from Chennai to Rishikesh, 2027-03-05, 3 days, 2 people, budget ₹8000. Adventure."
+  origin: Chennai
+  destination: Rishikesh
+  start_date: 2027-03-05
+  days: 3
+  travellers: 2
+  budget_inr: 8000
+  expect_over_budget: true
+- id: s17-bali-group
+  ask: "Plan a trip from Bengaluru to Bali, 2027-05-10, 5 days, 4 people, budget ₹320000. Beaches and adventure."
+  origin: Bengaluru
+  destination: Bali
+  start_date: 2027-05-10
+  days: 5
+  travellers: 4
+  budget_inr: 320000
+- id: s18-dubai-weekend
+  ask: "Plan a trip from Mumbai to Dubai, 2027-02-27, 2 days, 2 people, budget ₹90000. Landmarks."
+  origin: Mumbai
+  destination: Dubai
+  start_date: 2027-02-27
+  days: 2
+  travellers: 2
+  budget_inr: 90000
+- id: s19-singapore-solo
+  ask: "Plan a trip from Hyderabad to Singapore, 2027-04-15, 4 days, 1 person, budget ₹85000. Museums and food."
+  origin: Hyderabad
+  destination: Singapore
+  start_date: 2027-04-15
+  days: 4
+  travellers: 1
+  budget_inr: 85000
+- id: s20-bangkok-long
+  ask: "Plan a trip from Delhi to Bangkok, 2027-03-01, 7 days, 2 people, budget ₹150000. Heritage, markets and food."
+  origin: Delhi
+  destination: Bangkok
+  start_date: 2027-03-01
+  days: 7
+  travellers: 2
+  budget_inr: 150000

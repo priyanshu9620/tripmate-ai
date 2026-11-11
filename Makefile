@@ -1,4 +1,4 @@
-.PHONY: sync up down logs test lint fmt run chat demo migrate
+.PHONY: sync up down logs test lint fmt run chat demo migrate bench durability load report
 
 sync:            ## install deps (uv)
 	uv sync
@@ -32,3 +32,19 @@ demo:            ## scripted 2-minute demo against the running stack (DEMO.md)
 
 migrate:         ## apply DB migrations to DATABASE_URL (the API also does this at startup)
 	uv run alembic upgrade head
+
+# ---- measurement (bench/README in docs/GUIDE.md) ----
+bench:           ## agent benchmark with the real model from .env (20 scenarios; ~120 LLM requests)
+	uv run python bench/run_agent.py
+
+bench-fake:      ## same benchmark with the scripted model (seconds, no key)
+	uv run python bench/run_agent.py --provider fake
+
+durability:      ## 10× kill the API mid-approval and resume (needs make up with Postgres)
+	uv run python bench/durability.py 10
+
+load:            ## k6 in Docker at 2/5/10/20 VUs against the API running with LLM_PROVIDER=fake
+	uv run python bench/run_load.py
+
+report:          ## regenerate bench/report.md + charts + bench/results.json from the latest runs
+	uv run python bench/report.py

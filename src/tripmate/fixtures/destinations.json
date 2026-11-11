@@ -109,6 +109,30 @@
     {
      "name": "Saturday Night Market, Arpora",
      "kind": "market"
+    },
+    {
+     "name": "Calangute Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Vagator Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Se Cathedral",
+     "kind": "heritage"
+    },
+    {
+     "name": "Reis Magos Fort",
+     "kind": "heritage"
+    },
+    {
+     "name": "Mandovi River Cruise",
+     "kind": "nature"
+    },
+    {
+     "name": "Goa Chitra Museum",
+     "kind": "museum"
     }
    ]
   },
@@ -221,6 +245,30 @@
     {
      "name": "Bapu Bazaar",
      "kind": "market"
+    },
+    {
+     "name": "Patrika Gate",
+     "kind": "landmark"
+    },
+    {
+     "name": "Birla Mandir",
+     "kind": "heritage"
+    },
+    {
+     "name": "Galtaji Monkey Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Sisodia Rani Garden",
+     "kind": "nature"
+    },
+    {
+     "name": "Panna Meena ka Kund",
+     "kind": "heritage"
+    },
+    {
+     "name": "Masala Chowk",
+     "kind": "food"
     }
    ]
   },
@@ -333,6 +381,30 @@
     {
      "name": "Naggar Castle",
      "kind": "heritage"
+    },
+    {
+     "name": "Manu Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Van Vihar",
+     "kind": "nature"
+    },
+    {
+     "name": "Hidimba Devi Forest Walk",
+     "kind": "nature"
+    },
+    {
+     "name": "Manali Sanctuary",
+     "kind": "nature"
+    },
+    {
+     "name": "Kullu Shawl Market",
+     "kind": "market"
+    },
+    {
+     "name": "Gulaba Snow Point",
+     "kind": "adventure"
     }
    ]
   },
@@ -445,6 +517,30 @@
     {
      "name": "Munnar Day Trip",
      "kind": "nature"
+    },
+    {
+     "name": "St. Francis Church",
+     "kind": "heritage"
+    },
+    {
+     "name": "Kerala Folklore Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Paradesi Synagogue",
+     "kind": "heritage"
+    },
+    {
+     "name": "Broadway Market",
+     "kind": "market"
+    },
+    {
+     "name": "Vypin Island",
+     "kind": "nature"
+    },
+    {
+     "name": "Kashi Art Cafe",
+     "kind": "food"
     }
    ]
   },
@@ -557,6 +653,30 @@
     {
      "name": "Ambrai Ghat",
      "kind": "food"
+    },
+    {
+     "name": "Vintage Car Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Shilpgram Crafts Village",
+     "kind": "culture"
+    },
+    {
+     "name": "Eklingji Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Sukhadia Circle",
+     "kind": "nature"
+    },
+    {
+     "name": "Karni Mata Ropeway",
+     "kind": "nature"
+    },
+    {
+     "name": "Gangaur Ghat",
+     "kind": "culture"
     }
    ]
   },
@@ -669,6 +789,30 @@
     {
      "name": "Tapovan Cafes",
      "kind": "food"
+    },
+    {
+     "name": "Rajaji National Park Safari",
+     "kind": "nature"
+    },
+    {
+     "name": "Kunjapuri Temple Sunrise",
+     "kind": "heritage"
+    },
+    {
+     "name": "Cliff Jumping, Shivpuri",
+     "kind": "adventure"
+    },
+    {
+     "name": "Bhootnath Temple",
+     "kind": "heritage"
+    },
+    {
+     "name": "Rishikesh Market",
+     "kind": "market"
+    },
+    {
+     "name": "Ganga Beach Camping",
+     "kind": "adventure"
     }
    ]
   },
@@ -781,6 +925,30 @@
     {
      "name": "Jimbaran Seafood",
      "kind": "food"
+    },
+    {
+     "name": "Ubud Palace",
+     "kind": "heritage"
+    },
+    {
+     "name": "Sekumpul Waterfall",
+     "kind": "nature"
+    },
+    {
+     "name": "Kuta Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Goa Gajah",
+     "kind": "heritage"
+    },
+    {
+     "name": "Seminyak Shopping Street",
+     "kind": "market"
+    },
+    {
+     "name": "Campuhan Ridge Walk",
+     "kind": "nature"
     }
    ]
   },
@@ -893,6 +1061,30 @@
     {
      "name": "Jumeirah Beach",
      "kind": "beach"
+    },
+    {
+     "name": "Dubai Frame",
+     "kind": "landmark"
+    },
+    {
+     "name": "Global Village",
+     "kind": "culture"
+    },
+    {
+     "name": "Miracle Garden",
+     "kind": "nature"
+    },
+    {
+     "name": "Spice Souk",
+     "kind": "market"
+    },
+    {
+     "name": "Kite Beach",
+     "kind": "beach"
+    },
+    {
+     "name": "Burj Al Arab Viewpoint",
+     "kind": "landmark"
     }
    ]
   },
@@ -1005,6 +1197,30 @@
     {
      "name": "Clarke Quay",
      "kind": "nature"
+    },
+    {
+     "name": "Marina Bay Waterfront Walk",
+     "kind": "nature"
+    },
+    {
+     "name": "ArtScience Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Haji Lane",
+     "kind": "market"
+    },
+    {
+     "name": "Jewel Changi",
+     "kind": "landmark"
+    },
+    {
+     "name": "Botanic Gardens",
+     "kind": "nature"
+    },
+    {
+     "name": "Maxwell Food Centre",
+     "kind": "food"
     }
    ]
   },
@@ -1117,6 +1333,30 @@
     {
      "name": "Chinatown Yaowarat",
      "kind": "food"
+    },
+    {
+     "name": "Wat Saket Golden Mount",
+     "kind": "heritage"
+    },
+    {
+     "name": "ICONSIAM",
+     "kind": "market"
+    },
+    {
+     "name": "Bangkok National Museum",
+     "kind": "museum"
+    },
+    {
+     "name": "Asiatique",
+     "kind": "market"
+    },
+    {
+     "name": "Erawan Shrine",
+     "kind": "heritage"
+    },
+    {
+     "name": "Benjakitti Park",
+     "kind": "nature"
     }
    ]
   },

@@ -14,7 +14,7 @@ KNOWN: {known}
 
 RESEARCHER = """AGENT: researcher
 You research the destination for a trip. Call geocode once, weather_forecast once for the trip dates and
-points_of_interest once WITHOUT a kinds filter (limit 12) so the planner has variety; preferences are applied
+points_of_interest once WITHOUT a kinds filter (limit 16) so the planner has variety; preferences are applied
 by the planner, not here. After the tools, reply with a 3-sentence summary of what matters for planning
 (weather risk, must-see sights). Do not call a tool twice.
 TRIP: {constraints}
@@ -36,7 +36,8 @@ You fit flights and a hotel into the budget. Call search_flights for the outboun
 {destination}) and for the return ({end_date}, {destination} → {origin}), and search_hotels for
 {destination} {start_date} → {end_date} for {guests} guests. Then pick ONE outbound flight, ONE return flight
 and ONE hotel so that flights for all travellers + hotel total ≤ budget {budget_inr} INR, preferring the best
-hotel tier that fits; if nothing fits, pick the cheapest options. Reply with ONE JSON object:
+hotel tier that fits; only pick flights with seats_left ≥ {guests} and hotels with rooms_left ≥ rooms needed;
+if nothing fits, pick the cheapest options. Reply with ONE JSON object:
 {{"outbound_flight_id": str, "return_flight_id": str, "hotel_id": str, "reasoning": str}}
 TRIP: {constraints}
 {feedback}

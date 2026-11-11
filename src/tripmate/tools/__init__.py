@@ -40,7 +40,7 @@ def weather_forecast(place: str, start_date: str, end_date: str) -> dict:
 
 
 @tool
-def points_of_interest(place: str, kinds: list[str] | None = None, limit: int = 8) -> dict:
+def points_of_interest(place: str, kinds: list[str] | None = None, limit: int = 16) -> dict:
     """Top sights for a place. kinds filters by category: beach, heritage, nature, market, museum, food,
     adventure, culture, landmark."""
     try:

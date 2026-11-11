@@ -79,7 +79,7 @@ class ScriptedTripModel(BaseChatModel):
         if m := re.search(r"(\d+)\s*(?:-|\s)?(days?|nights?)", low):
             n = int(m.group(1))
             out["days"] = n + 1 if m.group(2).startswith("night") else n
-        if m := re.search(r"(\d+)\s*(?:people|persons|adults|travellers|travelers|pax|of us)", low):
+        if m := re.search(r"(\d+)\s*(?:people|persons?|adults?|travellers?|travelers?|pax|of us)", low):
             out["travellers"] = [f"Traveller {i + 1}" for i in range(int(m.group(1)))]
         if m := re.search(r"(?:₹|rs\.?|inr|budget(?:\s+of)?)\s*([\d,]+)\s*(k)?", low):
             v = int(m.group(1).replace(",", "")) * (1000 if m.group(2) else 1)
@@ -105,9 +105,6 @@ class ScriptedTripModel(BaseChatModel):
             return AIMessage(content=f"Research done for {c.get('destination')}: see weather and sights.")
         start = date.fromisoformat(c["start_date"])
         end = start + timedelta(days=max(1, c["days"] - 1))
-        kinds = [
-            p for p in c.get("preferences", []) if p in {"beach", "heritage", "nature", "market", "food"}
-        ]
         return AIMessage(
             content="",
             tool_calls=[
@@ -119,7 +116,7 @@ class ScriptedTripModel(BaseChatModel):
                 },
                 {
                     "name": "points_of_interest",
-                    "args": {"place": c["destination"], "kinds": kinds or None, "limit": 10},
+                    "args": {"place": c["destination"], "limit": 16},
                     "id": "c3",
                 },
             ],
@@ -133,8 +130,9 @@ class ScriptedTripModel(BaseChatModel):
         sights.sort(key=lambda n: 0 if any(p in n.lower() for p in prefs) else 1)  # preferred sights first
         start = date.fromisoformat(c["start_date"])
         days, i = [], 0
+        per_mid = max(1, min(3, len(sights) // max(1, c["days"]))) if sights else 1  # spread, never repeat
         for d in range(c["days"]):
-            per = 2 if d in (0, c["days"] - 1) else 3
+            per = min(2, per_mid) if d in (0, c["days"] - 1) else per_mid
             acts = [sights[(i + k) % len(sights)] for k in range(per)] if sights else ["Free time"]
             i += per
             days.append(
@@ -186,9 +184,10 @@ class ScriptedTripModel(BaseChatModel):
                 ],
             )
         results = [json.loads(m.text) for m in tool_msgs]
-        out_f = (results[0].get("items") or [None])[0]
-        ret_f = (results[1].get("items") or [None])[0]
-        hotels = results[2].get("items") or []
+        rooms = -(-n // 2)
+        out_f = next((f for f in results[0].get("items", []) if f["seats_left"] >= n), None)
+        ret_f = next((f for f in results[1].get("items", []) if f["seats_left"] >= n), None)
+        hotels = [h for h in results[2].get("items", []) if h["rooms_left"] >= rooms]
         if not (out_f and ret_f and hotels):
             return AIMessage(content=json.dumps({"reasoning": "no inventory"}))
         flights_total = (out_f["price_per_person_inr"] + ret_f["price_per_person_inr"]) * n

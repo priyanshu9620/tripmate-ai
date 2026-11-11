@@ -25,6 +25,7 @@ services:
         required: false
     environment:
       DATABASE_URL: postgresql://tm:tm@postgres:5432/tripmate
+      LLM_PROVIDER: ${LLM_PROVIDER:-google_genai}   # shell override wins: LLM_PROVIDER=fake make up
     ports:
       - "8000:8000"
     depends_on:

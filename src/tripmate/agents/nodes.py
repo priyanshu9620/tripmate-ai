@@ -137,6 +137,11 @@ class Nodes:
                     flights_seen[item["flight_id"]] = item
                 elif tr["name"] == "search_hotels":
                     hotels_seen[item["hotel_id"]] = item
+        n = len(c.travellers)
+        rooms = -(-n // 2)
+        # capacity gate: an option must actually have room for this party, whatever the model picked
+        flights_seen = {k: f for k, f in flights_seen.items() if f.get("seats_left", 0) >= n}
+        hotels_seen = {k: h for k, h in hotels_seen.items() if h.get("rooms_left", 0) >= rooms}
         out, ret, hotel = (
             flights_seen.get(pick.get("outbound_flight_id")),
             flights_seen.get(pick.get("return_flight_id")),
@@ -144,17 +149,16 @@ class Nodes:
         )
         usage = {**res.usage, "tool_calls": len(res.tool_results)}
         if not (out and ret and hotel):
-            # the model named ids that no search returned: fall back to the cheapest of each, say so
+            # the model named ids no search returned (or without capacity): cheapest valid option, say so
             out = out or _cheapest(flights_seen, c.origin, c.destination)
             ret = ret or _cheapest(flights_seen, c.destination, c.origin)
             hotel = hotel or (
                 min(hotels_seen.values(), key=lambda h: h["total_inr"]) if hotels_seen else None
             )
-            pick["reasoning"] = (pick.get("reasoning") or "") + " [fallback: cheapest options substituted]"
+            pick["reasoning"] = (pick.get("reasoning") or "") + " [fallback: cheapest option with capacity]"
         if not (out and ret and hotel):
             msg = "I could not find flights or hotels for this trip. Try different dates or destination."
             return {"messages": [AIMessage(content=msg)], "phase": "collect", "usage": usage}
-        n = len(c.travellers)
         total = out["price_per_person_inr"] * n + ret["price_per_person_inr"] * n + hotel["total_inr"]
         proposal = {
             "outbound": out,
