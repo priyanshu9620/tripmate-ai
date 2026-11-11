@@ -17,7 +17,10 @@ _OSM_KINDS = {
 def overpass_query(lat: float, lon: float, radius_m: int = 10000) -> str:
     # nodes only, small radius: the public Overpass servers are slow and often time out (notes P-2);
     # the tool falls back to the curated fixture list whenever the call fails.
-    return f"[out:json][timeout:8];node(around:{radius_m},{lat},{lon})[tourism~'attraction|museum|viewpoint'];out tags 40;"
+    return (
+        f"[out:json][timeout:8];node(around:{radius_m},{lat},{lon})"
+        "[tourism~'attraction|museum|viewpoint'];out tags 40;"
+    )
 
 
 def parse_overpass(payload: dict | None) -> list[dict]:
