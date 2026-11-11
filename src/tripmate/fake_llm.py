@@ -51,7 +51,8 @@ class ScriptedTripModel(BaseChatModel):
     # ---- intake: regex extraction over the latest human messages ----
     def _intake(self, system: str, messages: list[BaseMessage]) -> AIMessage:
         known = extract_json(system.split("KNOWN:", 1)[1]) if "KNOWN:" in system else {}
-        text = " ".join(m.text for m in messages if isinstance(m, HumanMessage))
+        humans = [m.text for m in messages if isinstance(m, HumanMessage)]
+        text = humans[-1] if humans else ""  # newest message only; earlier facts arrive via KNOWN
         out: dict = {"preferences": []}
         low = text.lower()
         stop = r"(?:[,.;]|\s+to\b|\s+on\b|\s+for\b|\s+in\b|\s+\d|$)"
