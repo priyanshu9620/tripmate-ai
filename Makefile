@@ -1,4 +1,4 @@
-.PHONY: sync up down logs test lint fmt run chat demo
+.PHONY: sync up down logs test lint fmt run chat demo migrate
 
 sync:            ## install deps (uv)
 	uv sync
@@ -27,5 +27,8 @@ run:             ## run the API from the venv (uses .env; postgres from `make up
 chat:            ## terminal chat against a running server
 	uv run tm chat
 
-demo:            ## (Phase 2) scripted 2-minute demo
-	@echo "demo arrives in Phase 2"
+demo:            ## scripted 2-minute demo against the running stack (DEMO.md)
+	uv run python scripts/demo.py
+
+migrate:         ## apply DB migrations to DATABASE_URL (the API also does this at startup)
+	uv run alembic upgrade head

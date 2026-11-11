@@ -7,8 +7,6 @@ from datetime import date
 from tripmate.providers import bookings
 from tripmate.providers.catalog import hotels, resolve_place
 
-_SEEN: dict[str, dict] = {}
-
 
 def _season_mult(rec: dict, month: int) -> float:
     """Dry months are peak season: fewer rainy days → higher rates."""
@@ -54,18 +52,23 @@ def search_hotels(
             "total_inr": rate * nights * rooms,
             "rooms_left": rng.randint(1, 6),
         }
-        _SEEN[f"{h['hotel_id']}|{checkin}|{checkout}"] = row
         out.append(row)
     return sorted(out, key=lambda r: r["total_inr"])
 
 
+def find_hotel(hotel_id: str, checkin: date, checkout: date) -> dict | None:
+    """Re-derive the offer for (hotel, dates); deterministic, so it survives a restart."""
+    h = next((h for h in hotels() if h["hotel_id"] == hotel_id), None)
+    if h is None:
+        return None
+    rows = search_hotels(h["destination"], checkin, checkout, guests=1)
+    return next((r for r in rows if r["hotel_id"] == hotel_id), None)
+
+
 def book_hotel(hotel_id: str, checkin: date, checkout: date, guest_names: list[str]) -> dict:
-    row = _SEEN.get(f"{hotel_id}|{checkin}|{checkout}")
+    row = find_hotel(hotel_id, checkin, checkout)
     if row is None:
-        return {
-            "ok": False,
-            "error": f"unknown hotel_id/dates {hotel_id!r} {checkin}→{checkout}: search_hotels first",
-        }
+        return {"ok": False, "error": f"unknown hotel_id/dates {hotel_id!r} {checkin}→{checkout}"}
     if not guest_names:
         return {"ok": False, "error": "guest_names must not be empty"}
     rooms = -(-len(guest_names) // 2)

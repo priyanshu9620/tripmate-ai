@@ -35,5 +35,9 @@ def get_model(provider: str | None = None, model: str | None = None) -> BaseChat
     provider = provider or settings.llm_provider
     model = model or settings.llm_model
     if provider == "fake":
+        from tripmate.fake_llm import ScriptedTripModel
+
+        return ScriptedTripModel()
+    if provider == "echo":
         return EchoChatModel()
     return init_chat_model(model, model_provider=provider, temperature=0)

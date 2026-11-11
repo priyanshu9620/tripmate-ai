@@ -45,7 +45,8 @@ def test_airline_pool_matches_route_type():
 
 
 def test_book_flight_requires_search_and_is_idempotent():
-    assert flights.book_flight("XX999-2026-12-18", ["A"])["ok"] is False
+    assert flights.book_flight("XX999-DEL-GOI-2026-12-18", ["A"])["ok"] is False
+    assert flights.book_flight("garbage", ["A"])["ok"] is False
     f = flights.search_flights("Delhi", "Goa", D)[0]
     first = flights.book_flight(f["flight_id"], ["Asha", "Ravi"])
     again = flights.book_flight(f["flight_id"], ["ravi", "Asha "])
@@ -53,6 +54,16 @@ def test_book_flight_requires_search_and_is_idempotent():
     assert again["reference"] == first["reference"] and again["already_booked"] is True
     assert len(bookings.all_bookings()) == 1
     assert flights.book_flight(f["flight_id"], [])["ok"] is False
+
+
+def test_booking_survives_a_fresh_process():
+    """ids are self-describing; book without a prior search in this process (restart scenario)."""
+    fid = flights.search_flights("Delhi", "Goa", D)[0]["flight_id"]
+    hid = hotels.search_hotels("Goa", D, date(2026, 12, 22))[0]["hotel_id"]
+    bookings.reset()
+    assert flights.find_flight(fid)["flight_id"] == fid
+    assert flights.book_flight(fid, ["Asha"])["ok"]
+    assert hotels.book_hotel(hid, D, date(2026, 12, 22), ["Asha"])["ok"]
 
 
 def test_hotels_filter_tier_and_budget_and_book():

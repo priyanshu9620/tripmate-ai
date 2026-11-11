@@ -5,42 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TripMate AI</title>
 <style>
-  :root { --bg:#f6f7f9; --fg:#1b1f24; --me:#dbeafe; --bot:#ffffff; --line:#d0d7de; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#0f1115; --fg:#e6e6e6; --me:#1e3a5f; --bot:#1b1f27; --line:#30363d; } }
+  :root { --bg:#f6f7f9; --fg:#1b1f24; --me:#dbeafe; --bot:#ffffff; --line:#d0d7de; --warn:#fff3cd; --ok:#dcfce7; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1115; --fg:#e6e6e6; --me:#1e3a5f; --bot:#1b1f27; --line:#30363d; --warn:#4a3b00; --ok:#0f3d23; } }
   body { margin:0; font:15px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--fg); }
-  main { max-width:720px; margin:0 auto; padding:16px; display:flex; flex-direction:column; min-height:100vh; box-sizing:border-box; }
-  header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+  main { max-width:760px; margin:0 auto; padding:16px; display:flex; flex-direction:column; min-height:100vh; box-sizing:border-box; }
+  header { display:flex; justify-content:space-between; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
   #log { flex:1; overflow:auto; display:flex; flex-direction:column; gap:8px; padding:8px 0; }
-  .msg { padding:10px 12px; border-radius:10px; border:1px solid var(--line); max-width:85%; white-space:pre-wrap; }
+  .msg { padding:10px 12px; border-radius:10px; border:1px solid var(--line); max-width:88%; white-space:pre-wrap; }
   .me { background:var(--me); align-self:flex-end; } .bot { background:var(--bot); align-self:flex-start; }
+  .sys { background:transparent; border:0; opacity:.7; font-size:13px; align-self:center; }
+  .prop { background:var(--warn); align-self:stretch; max-width:100%; }
+  .done { background:var(--ok); align-self:stretch; max-width:100%; }
+  .prop button, .prop input { margin-top:8px; }
   form { display:flex; gap:8px; } input { flex:1; padding:10px; border:1px solid var(--line); border-radius:8px; background:var(--bot); color:var(--fg); }
-  button { padding:10px 16px; border:0; border-radius:8px; background:#2563eb; color:#fff; cursor:pointer; }
-  small { opacity:.7 }
+  button { padding:10px 16px; border:0; border-radius:8px; background:#2563eb; color:#fff; cursor:pointer; } button.alt { background:#6b7280; }
+  small { opacity:.7 } table { border-collapse:collapse; font-size:13px; } td { padding:2px 8px 2px 0; vertical-align:top; }
 </style>
 </head>
 <body>
 <main>
   <header><strong>TripMate AI</strong><small id="meta">connecting…</small></header>
   <div id="log"></div>
-  <form id="f"><input id="t" autocomplete="off" placeholder="Where do you want to go?" autofocus><button>Send</button></form>
+  <form id="f"><input id="t" autocomplete="off" placeholder="e.g. Plan a trip from Delhi to Goa, 2026-12-18, 4 days, 2 people, budget ₹60000, we like beaches" autofocus><button id="send">Send</button></form>
 </main>
 <script>
-const log = document.getElementById('log'), meta = document.getElementById('meta');
-let thread = null;
-function add(cls, text) { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight; }
+const log = document.getElementById('log'), meta = document.getElementById('meta'), form = document.getElementById('f'), input = document.getElementById('t');
+let thread = null, pending = false;
+const H = {'content-type':'application/json', 'X-User': new URLSearchParams(location.search).get('user') || 'demo'};
+function add(cls, html, asText=true) { const d = document.createElement('div'); d.className = 'msg ' + cls; if (asText) d.textContent = html; else d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; }
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 async function init() {
   const h = await (await fetch('/healthz')).json();
-  thread = (await (await fetch('/threads', {method:'POST'})).json()).thread_id;
-  meta.textContent = `v${h.version} · ${h.llm_provider} · postgres ${h.postgres ? 'ok' : 'down'} · thread ${thread}`;
+  const q = new URLSearchParams(location.search);
+  thread = q.get('thread') || (await (await fetch('/threads', {method:'POST', headers:H})).json()).thread_id;
+  history.replaceState(null, '', `?thread=${thread}` + (q.get('user') ? `&user=${q.get('user')}` : ''));
+  meta.textContent = `v${h.version} · ${h.llm_provider} · tools ${h.tools_mode} · memory ${h.memory} · thread ${thread}`;
+  if (q.get('thread')) {
+    const r = await fetch(`/threads/${thread}`, {headers:H});
+    if (r.ok) { const s = await r.json(); s.messages.forEach(m => add(m.role === 'user' ? 'me' : 'bot', m.text)); if (s.status === 'awaiting_approval') proposal({proposal: s.proposal, itinerary: s.itinerary, reply: 'Proposal still pending after reload.'}); }
+  }
 }
-document.getElementById('f').addEventListener('submit', async e => {
-  e.preventDefault(); const t = document.getElementById('t'); const text = t.value.trim(); if (!text) return;
-  t.value = ''; add('me', text);
+function itinerary(it) { return (it && it.days || []).map(d => `<tr><td><b>${esc(d.date)}</b> ${esc(d.title)}</td><td>${esc(d.activities.join(', '))}</td></tr>`).join(''); }
+function proposal(turn) {
+  const p = turn.proposal; pending = true;
+  const d = add('prop', `<b>Approval needed</b> — ${esc(turn.reply)}<br>
+    <small>${esc(p.outbound.airline)} ${esc(p.outbound.flight_id)} · ${esc(p.return.airline)} ${esc(p.return.flight_id)} · ${esc(p.hotel.name)} (${esc(p.hotel.tier)}, ${p.hotel.nights} nights)<br>
+    ₹${p.breakdown.flights_inr.toLocaleString('en-IN')} flights + ₹${p.breakdown.hotel_inr.toLocaleString('en-IN')} hotel = <b>₹${p.total_inr.toLocaleString('en-IN')}</b> vs budget ₹${p.budget_inr.toLocaleString('en-IN')} ${p.within_budget ? '✅' : '⚠️ over budget'}</small>
+    <table>${itinerary(turn.itinerary)}</table>
+    <button data-d="approve">Approve &amp; book</button> <button class="alt" data-d="reject">Reject</button> <input id="fb" placeholder="feedback for a new proposal (optional)">`, false);
+  d.querySelectorAll('button').forEach(b => b.onclick = async () => {
+    const fb = d.querySelector('#fb').value; d.querySelectorAll('button,input').forEach(x => x.disabled = true);
+    await turn_(`/threads/${thread}/approve`, {decision: b.dataset.d, feedback: fb});
+  });
+}
+async function turn_(url, body) {
+  add('sys', 'thinking…'); const sys = log.lastChild;
   try {
-    const r = await fetch(`/threads/${thread}/messages`, {method:'POST', headers:{'content-type':'application/json'}, body: JSON.stringify({content:text})});
+    const r = await fetch(url, {method:'POST', headers:H, body: JSON.stringify(body)});
     if (!r.ok) throw new Error(`${r.status} ${await r.text()}`);
-    add('bot', (await r.json()).reply);
-  } catch (err) { add('bot', 'error: ' + err.message); }
+    const t = await r.json(); sys.remove(); pending = false;
+    if (t.status === 'awaiting_approval') proposal(t);
+    else if (t.status === 'done') add('done', `<b>Booked</b><br>${esc(t.reply).replace(/\n/g,'<br>')}`, false);
+    else add('bot', t.reply);
+    if (t.usage && t.usage.llm_calls) add('sys', `${t.usage.llm_calls} LLM calls · ${t.usage.tool_calls||0} tool calls · ${t.usage.input_tokens||0}/${t.usage.output_tokens||0} tokens`);
+  } catch (err) { sys.remove(); add('bot', 'error: ' + err.message); }
+}
+form.addEventListener('submit', async e => {
+  e.preventDefault(); const text = input.value.trim(); if (!text) return;
+  input.value = ''; add('me', text);
+  await turn_(`/threads/${thread}/messages`, {content: text});
 });
 init().catch(err => meta.textContent = 'error: ' + err.message);
 </script>

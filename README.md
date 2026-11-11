@@ -1,17 +1,45 @@
 # TripMate AI — multi-agent trip planner
 
-> Phase 0 skeleton. A supervisor + four specialised LangGraph agents (researcher, planner, budgeter, booker) with
+> A supervisor + four specialised LangGraph agents (researcher, planner, budgeter, booker) with
 > tool calling, a human-in-the-loop approval pause before any booking, and conversation memory in PostgreSQL —
 > served by FastAPI, containerised with Docker, deployed to AWS by GitHub Actions. Bookings are simulated.
+
+## How it works
+
+```
+                 ┌────────── supervisor: route(state) — plain code, no LLM ──────────┐
+ user message ─► intake ─► researcher ─► planner ─► budgeter ─► approval ─► booker ─► trip saved
+                 (LLM:     (LLM + tools: (LLM)      (LLM + tools:  interrupt()  (code: books
+                 extract    geocode,                 search_flights, ⏸ waits for   exactly what
+                 constraints weather,                search_hotels)  approve /     was approved)
+                 or ask)    sights)                                  reject)
+                 ▲                                                   │
+                 └──────── reject + feedback → budgeter again ◄──────┘
+
+ state per thread → Postgres (LangGraph checkpointer)   preferences per user → Postgres (LangGraph store)
+ booked trips → `trips` table (SQLAlchemy + Alembic)    served by FastAPI (+ SSE stream) · CLI `tm` · /ui page
+```
+
+- **Agents** (`src/tripmate/agents/`): each is a node with its own prompt and tool set; the supervisor is a pure
+  function of the typed state, so routing is unit-tested without a model.
+- **Human-in-the-loop**: `interrupt()` before the booker; a message while a proposal is pending counts as a rejection
+  with feedback; after two rejections the agent stops.
+- **Memory**: `PostgresSaver` (per-thread state, survives restarts) + `PostgresStore` (cross-thread preferences).
+- **Any model**: `LLM_PROVIDER` / `LLM_MODEL` in `.env` (Gemini, Anthropic, Groq, Ollama via `init_chat_model`);
+  `fake` is a rule-based scripted model that drives the whole graph deterministically for tests and load tests.
 
 ## Run it
 
 ```
 cp .env.example .env     # optional: add a model key; without one the fake echo model is used
 make up                  # api + postgres → http://localhost:8000/ui
-make chat                # terminal chat
-make test                # offline tests, no network
+make chat                # terminal chat (y approves a pending proposal; any other text = feedback)
+make demo                # 2-minute scripted demo incl. a restart mid-approval (DEMO.md)
+make test                # offline tests, no network (Postgres test runs if localhost:5433 is up)
 ```
+
+API: `POST /threads` · `POST /threads/{id}/messages` · `POST /threads/{id}/stream` (SSE) · `POST /threads/{id}/approve` ·
+`GET /threads/{id}` · `GET /trips` · `GET /healthz` · `GET /metrics`. Header `X-User` scopes preferences and trips.
 
 ## Tools (Phase 1)
 Seven LangChain tools in `src/tripmate/tools/`: `geocode`, `weather_forecast`, `points_of_interest` (live via
@@ -23,4 +51,4 @@ Nominatim / Open-Meteo / Overpass when `TOOLS_MODE=live`, curated fixtures other
 Arrive in Phase 3 (`bench/`). Nothing here is asserted by hand.
 
 ## Roadmap
-0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory · 3 measurement · 4 AWS + CD · 5 interview material
+0 skeleton ✔ · 1 tools ✔ · 2 multi-agent graph + HITL + Postgres memory ✔ · 3 measurement · 4 AWS + CD · 5 interview material

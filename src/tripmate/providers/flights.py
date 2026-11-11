@@ -2,12 +2,11 @@
 
 import hashlib
 import random
+import re
 from datetime import date, timedelta
 
 from tripmate.providers import bookings
-from tripmate.providers.catalog import airlines, haversine_km, resolve_place
-
-_SEEN: dict[str, dict] = {}  # flight_id → flight, so book_flight can verify an id came from a search
+from tripmate.providers.catalog import _places, airlines, haversine_km, resolve_place
 
 
 def _rng(*parts: object) -> random.Random:
@@ -32,7 +31,7 @@ def search_flights(origin: str, destination: str, travel_date: date, passengers:
         dep_h, dep_m = rng.randint(5, 21), rng.choice([0, 15, 30, 45])
         minutes = int(km / 12.5 + 40 + rng.randint(-10, 25))  # ~750 km/h + taxi/turnaround
         fare = (a["base_fare_inr"] + a["per_km_inr"] * km) * day_mult * (1 + 0.04 * i)
-        fid = f"{a['code']}{num}-{travel_date.isoformat()}"
+        fid = f"{a['code']}{num}-{o['airport']}-{d['airport']}-{travel_date.isoformat()}"
         flight = {
             "flight_id": fid,
             "airline": a["name"],
@@ -44,18 +43,42 @@ def search_flights(origin: str, destination: str, travel_date: date, passengers:
             "stops": 0 if km < 2500 or rng.random() < 0.6 else 1,
             "seats_left": rng.randint(2, 9),
             "price_per_person_inr": round(fare / 10) * 10,
-            "total_inr": round(fare * passengers / 10) * 10,
+            "total_inr": round(fare / 10) * 10 * passengers,
             "passengers": passengers,
         }
-        _SEEN[fid] = flight
         out.append(flight)
     return sorted(out, key=lambda f: f["price_per_person_inr"])
 
 
+def find_flight(flight_id: str) -> dict | None:
+    """Re-derive a flight from its id (ids are self-describing: CODE123-DEL-GOI-YYYY-MM-DD). Search is
+    deterministic, so this works after a restart and rejects ids no search ever produced."""
+    m = re.fullmatch(r"([A-Z0-9]{2}\d{3})-([A-Z]{3})-([A-Z]{3})-(\d{4}-\d{2}-\d{2})", flight_id)
+    if not m:
+        return None
+    _, src, dst, day = m.groups()
+    try:
+        origin, dest = _by_airport(src), _by_airport(dst)
+        rows = search_flights(origin, dest, date.fromisoformat(day), 1)
+    except ValueError:
+        return None
+    return next((f for f in rows if f["flight_id"] == flight_id), None)
+
+
+def _by_airport(code: str) -> str:
+    for key, rec in _places()["destinations"].items():
+        if rec["airport"] == code:
+            return key
+    raise ValueError(code)
+
+
 def book_flight(flight_id: str, traveller_names: list[str]) -> dict:
-    flight = _SEEN.get(flight_id)
+    flight = find_flight(flight_id)
     if flight is None:
-        return {"ok": False, "error": f"unknown flight_id {flight_id!r}: search_flights first"}
+        return {
+            "ok": False,
+            "error": f"unknown flight_id {flight_id!r}: use an id returned by search_flights",
+        }
     if not traveller_names:
         return {"ok": False, "error": "traveller_names must not be empty"}
     if len(traveller_names) > flight["seats_left"]:
