@@ -171,6 +171,7 @@ resource "aws_lb" "app" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb.id]
   subnets            = data.aws_subnets.default.ids
+  idle_timeout       = 300 # an agent turn with a real model can exceed the 60 s default (P-14)
 }
 
 resource "aws_lb_target_group" "app" {
@@ -222,7 +223,7 @@ resource "aws_iam_user_policy" "github_deploy" {
     Statement = [
       { Effect = "Allow", Action = ["ecr:GetAuthorizationToken"], Resource = "*" },
       { Effect = "Allow", Action = ["ecr:*"], Resource = aws_ecr_repository.app.arn },
-      { Effect = "Allow", Action = ["ec2:DescribeInstances", "elasticloadbalancing:DescribeTargetHealth", "elasticloadbalancing:DescribeTargetGroups"], Resource = "*" },
+      { Effect = "Allow", Action = ["ec2:DescribeInstances", "elasticloadbalancing:DescribeTargetHealth", "elasticloadbalancing:DescribeTargetGroups", "elasticloadbalancing:DescribeLoadBalancers"], Resource = "*" },
       { Effect = "Allow", Action = ["ssm:SendCommand"], Resource = ["arn:aws:ssm:${var.region}::document/AWS-RunShellScript", "arn:aws:ec2:${var.region}:${data.aws_caller_identity.me.account_id}:instance/*"] },
       { Effect = "Allow", Action = ["ssm:GetCommandInvocation", "ssm:ListCommandInvocations"], Resource = "*" },
     ]

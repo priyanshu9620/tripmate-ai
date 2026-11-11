@@ -47,4 +47,4 @@ verified (1.8 s, 11 tokens). `.env` in the repo holds the Gemini key (git-ignore
    project with SCP (EC2/ELB/ECS/S3/CloudFront allowed, App Runner denied) — see shopease-notes D-21.
 
 ## Single next command
-User: `cd ~/Desktop/tripmate && make infra-apply` (≈3 min; creates the stack, ≈$1/day while up). Then tell Claude.
+User: `cd ~/Desktop/tripmate && git push && make infra-apply` (2 changes) then tell Claude; Claude re-deploys + verifies; then user `make infra-destroy` and `SECRETS_PASSPHRASE=… make secrets-pack && git commit -am 'chore: secrets' && git push`.

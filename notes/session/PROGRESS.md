@@ -1,5 +1,14 @@
 # Progress (newest first)
 
+## 2026-11-11 — Phase 4 deployed: TripMate live on AWS via GitHub Actions
+- User applied `infra/` (26 resources). Claude set `AWS_ACCESS_KEY_ID/SECRET` + `AWS_DEPLOY_ENABLED` from `tofu output`
+  and triggered `deploy`: build → ECR → SSM deploy.sh → ALB healthy, ≈2 min (run 43032175539). Smoke step failed on a
+  missing IAM action (P-15).
+- Verified through the ALB (docs/aws-evidence.md): healthz live-tools + postgres; a real Gemini conversation reached
+  the proposal (61 s — cut by the ALB 60 s idle timeout, P-14), approve → booked, 1 trip in AWS Postgres, /ui 200.
+- Pending: user `git push` (secrets archive commit + these fixes), `make infra-apply` (2 changes: idle timeout, IAM),
+  then Claude re-runs the deploy and re-verifies; then `make infra-destroy`; then `make secrets-pack` (state changed).
+
 ## 2026-11-11 — Phase 4 code ready, apply handed to the user
 - `infra/` (OpenTofu, aws 5.82.2 from the local mirror): default VPC, 2 SGs, ECR, 7 SSM params, instance role, 1 × t3.micro
   (compose: api + Postgres), ALB/TG/listener, IAM deploy user. `tofu validate` ok, `tofu plan` = 22 to add. Reused the
